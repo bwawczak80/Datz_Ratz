@@ -3,26 +3,22 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".HomeFragment"
-    android:background="@color/datz_black">
+    android:background="@color/datz_black"
+    tools:context=".HomeFragment">
 
-    <TextView
-        android:textColor="@color/white"
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Home Fragment"
-        android:textSize="30sp"
-        android:gravity="center"
-        android:layout_centerInParent="true"
-        />
+        android:layout_height="587dp" />
 
     <Button
-        android:layout_width="146dp"
-        android:layout_height="54dp"
-        android:layout_centerHorizontal="true"
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_marginTop="187dp"
-        android:layout_marginBottom="165dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="50dp"
         android:text="@string/view_order" />
 
 

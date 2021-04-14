@@ -10,11 +10,37 @@
     <string name="business_name">Datz Cichlids and Reptiles</string>
     <string name="view_order">View Order</string>
     <string name="name">Name</string>
-    <string name="weight">Weight</string>
+    <string name="weight">Weight in grams</string>
     <string name="morph">Morph</string>
     <string name="date_of_last_meal">Date of last meal</string>
     <string name="rodent">Rodent</string>
+    <string name="grams">grams</string>
+    <string name="previous_meal">Last meal</string>
+
+    <string-array name="rodents">
+        <item>Pinky Mouse</item>
+        <item>Fuzzy Mouse</item>
+        <item>Hopper Mouse</item>
+        <item>Small Mouse</item>
+        <item>Medium Mouse</item>
+        <item>Large Mouse</item>
+        <item>Pinky ASF</item>
+        <item>Hopper ASF</item>
+        <item>Small ASF5</item>
+        <item>Medium ASF</item>
+        <item>Large ASF</item>
+        <item>Jumbo ASF</item>
+        <item>Pinky Rat</item>
+        <item>Weaned Rat</item>
+        <item>Small Rat</item>
+        <item>Medium Rat</item>
+        <item>Large Rat</item>
+        <item>Jumbo Rat</item>
+    </string-array>
+
+
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
 
 </resources>

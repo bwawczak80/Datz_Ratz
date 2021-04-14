@@ -1,10 +1,12 @@
 package com.bwawczak.datz_ratz
 
-import androidx.appcompat.app.AppCompatActivity
+import android.content.Context
 import android.os.Bundle
 import android.view.MenuItem
+import android.view.MotionEvent
+import android.view.inputmethod.InputMethodManager
 import androidx.appcompat.app.ActionBarDrawerToggle
-import androidx.appcompat.widget.Toolbar
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
 import androidx.fragment.app.FragmentTransaction
 import com.google.android.material.navigation.NavigationView
@@ -15,8 +17,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     lateinit var homeFragment: HomeFragment
     lateinit var addSnakeFragment: AddSnakeFragment
     lateinit var viewPreviousFragment: ViewPreviousFragment
-
-
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -88,5 +88,14 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             super.onBackPressed()
         }
         super.onBackPressed()
+    }
+
+    //get rid of keyboard on touch
+    override fun dispatchTouchEvent(ev: MotionEvent?): Boolean {
+        if(currentFocus != null) {
+            val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+            imm.hideSoftInputFromWindow(currentFocus!!.windowToken,0)
+        }
+        return super.dispatchTouchEvent(ev)
     }
 }
