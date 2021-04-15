@@ -6,15 +6,11 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import androidx.fragment.app.Fragment
-import kotlinx.android.synthetic.main.dropdown_item.view.*
 import kotlinx.android.synthetic.main.fragment_add_snake.view.*
 
 
 class AddSnakeFragment : Fragment() {
 
-    override fun onResume() {
-        super.onResume()
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -24,8 +20,9 @@ class AddSnakeFragment : Fragment() {
 
         val view = inflater.inflate(R.layout.fragment_add_snake, container, false)
 
+        //create arrayAdapter for custom drop down menu
         val rodentList = resources.getStringArray(R.array.rodents)
-        val arrayAdapter = ArrayAdapter(requireContext(), R. layout.dropdown_item, rodentList)
+        val arrayAdapter = ArrayAdapter(requireContext(), R.layout.dropdown_item, rodentList)
         view.autoCompleteTextView.setAdapter(arrayAdapter)
 
         var nameHolder = " "
@@ -43,8 +40,6 @@ class AddSnakeFragment : Fragment() {
             dateHolder = view.dateInput.text.toString()
             rodentHolder = view.autoCompleteTextView.text.toString()
 
-
-
             writeToDB(nameHolder, weightHolder, morphHolder, dateHolder, rodentHolder)
 
         }
@@ -61,8 +56,5 @@ class AddSnakeFragment : Fragment() {
         date: String,
         rodent: String
     ) {
-
-
-
     }
 }

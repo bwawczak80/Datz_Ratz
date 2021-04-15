@@ -17,6 +17,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     lateinit var homeFragment: HomeFragment
     lateinit var addSnakeFragment: AddSnakeFragment
     lateinit var viewPreviousFragment: ViewPreviousFragment
+    lateinit var viewOrderFragment: ViewOrderFragment
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -76,6 +77,14 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                     .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
                     .commit()
             }
+            R.id.view_order -> {
+                viewOrderFragment = ViewOrderFragment()
+                supportFragmentManager
+                    .beginTransaction()
+                    .replace(R.id.frame_layout, viewOrderFragment)
+                    .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                    .commit()
+            }
         }
         drawerLayout.closeDrawer(GravityCompat.START)
         return true
@@ -92,9 +101,9 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     //get rid of keyboard on touch
     override fun dispatchTouchEvent(ev: MotionEvent?): Boolean {
-        if(currentFocus != null) {
+        if (currentFocus != null) {
             val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-            imm.hideSoftInputFromWindow(currentFocus!!.windowToken,0)
+            imm.hideSoftInputFromWindow(currentFocus!!.windowToken, 0)
         }
         return super.dispatchTouchEvent(ev)
     }
