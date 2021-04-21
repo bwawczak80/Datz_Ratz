@@ -15,7 +15,7 @@
         android:layout_marginTop="60dp"
         android:layout_marginEnd="10dp"
         android:text="@string/name"
-        android:textColor="@color/datz_dark_grey"
+        android:textColor="@color/datz_grey"
         android:textSize="15sp"
         tools:ignore="SmallSp" />
 
@@ -44,7 +44,7 @@
         android:layout_marginTop="10dp"
         android:layout_marginEnd="10dp"
         android:text="@string/weight"
-        android:textColor="@color/datz_dark_grey"
+        android:textColor="@color/datz_grey"
         android:textSize="15sp"
         tools:ignore="SmallSp" />
 
@@ -71,7 +71,7 @@
         android:layout_marginTop="10dp"
         android:layout_marginEnd="10dp"
         android:text="@string/morph"
-        android:textColor="@color/datz_dark_grey"
+        android:textColor="@color/datz_grey"
         android:textSize="15sp"
         tools:ignore="SmallSp" />
 
@@ -98,7 +98,7 @@
         android:layout_marginTop="10dp"
         android:layout_marginEnd="10dp"
         android:text="@string/date_of_last_meal"
-        android:textColor="@color/datz_dark_grey"
+        android:textColor="@color/datz_grey"
         android:textSize="15sp"
         tools:ignore="SmallSp" />
 
@@ -125,7 +125,7 @@
         android:layout_marginTop="10dp"
         android:layout_marginEnd="10dp"
         android:text="@string/previous_meal"
-        android:textColor="@color/datz_dark_grey"
+        android:textColor="@color/datz_grey"
         android:textSize="15sp"
         tools:ignore="SmallSp" />
 
@@ -133,6 +133,7 @@
     <com.google.android.material.textfield.TextInputLayout
         style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.ExposedDropdownMenu"
         android:id="@+id/dropdown"
+
         android:layout_below="@id/rodentTag"
         android:layout_marginStart="20dp"
         android:layout_marginTop="10dp"
@@ -142,6 +143,7 @@
         android:layout_alignParentBottom="true">
 
         <AutoCompleteTextView
+            android:textSize="20sp"
             android:id="@+id/autoCompleteTextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -154,12 +156,12 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <Button
+        android:layout_below="@+id/rodentTag"
         android:id="@+id/addBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="100dp"
         android:layout_marginBottom="50dp"
         android:text="@string/add_snake" />
 

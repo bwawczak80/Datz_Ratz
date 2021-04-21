@@ -42,6 +42,14 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="current_order">Current Order</string>
+    <string name="_4553_prime_pkwy">4553 Prime PKWY</string>
+    <string name="mchenry_il_60050">McHenry IL 60050</string>
+    <string name="_1">1</string>
+    <string name="small_asf">Small ASF</string>
+    <string name="_1_75">$1.75</string>
+    <string name="total_order">Total Order</string>
+    <string name="_205">$205</string>
+    <string name="send_order">Send Order</string>
 
 
 </resources>

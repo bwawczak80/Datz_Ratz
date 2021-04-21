@@ -3,9 +3,9 @@
     android:layout_height="wrap_content"
     android:background="@color/datz_black"
     android:textColor="@color/white"
-    android:textSize="20sp"
+    android:textSize="15sp"
     android:padding="14dp"
-    android:text="TextView"
+    android:text="@string/previous_meal"
 
 
     xmlns:android="http://schemas.android.com/apk/res/android" />

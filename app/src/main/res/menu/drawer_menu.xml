@@ -25,10 +25,10 @@
             android:icon="@drawable/ic_action_order"
             android:title="@string/current_order" />
 
-        <item
+      <!--  <item
             android:id="@+id/view_prev"
             android:icon="@drawable/ic_action_view"
-            android:title="@string/view_previous_orders" />
+            android:title="@string/view_previous_orders" /> -->
 
 
     </group>

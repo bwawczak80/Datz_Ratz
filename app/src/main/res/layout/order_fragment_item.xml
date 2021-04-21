@@ -12,7 +12,7 @@
 
 
         <TextView
-            android:text="1"
+            android:text="@string/_1"
             android:id="@+id/txt_qty"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -23,7 +23,7 @@
 
         <TextView
             android:layout_toEndOf="@+id/txt_qty"
-            android:text="Small ASF"
+            android:text="@string/small_asf"
             android:id="@+id/txt_rodent"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -34,7 +34,7 @@
 
         <TextView
             android:layout_toEndOf="@+id/txt_rodent"
-            android:text="$1.75"
+            android:text="@string/_1_75"
             android:id="@+id/txt_price"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

@@ -16,7 +16,8 @@ import kotlinx.android.synthetic.main.app_bar_main.*
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
     lateinit var homeFragment: HomeFragment
     lateinit var addSnakeFragment: AddSnakeFragment
-    lateinit var viewPreviousFragment: ViewPreviousFragment
+
+    //lateinit var viewPreviousFragment: ViewPreviousFragment
     lateinit var viewOrderFragment: ViewOrderFragment
 
 
@@ -69,14 +70,14 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                     .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
                     .commit()
             }
-            R.id.view_prev -> {
-                viewPreviousFragment = ViewPreviousFragment()
-                supportFragmentManager
-                    .beginTransaction()
-                    .replace(R.id.frame_layout, viewPreviousFragment)
-                    .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
-                    .commit()
-            }
+//            R.id.view_prev -> {
+//                viewPreviousFragment = ViewPreviousFragment()
+//                supportFragmentManager
+//                    .beginTransaction()
+//                    .replace(R.id.frame_layout, viewPreviousFragment)
+//                    .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+//                    .commit()
+//            }
             R.id.view_order -> {
                 viewOrderFragment = ViewOrderFragment()
                 supportFragmentManager
