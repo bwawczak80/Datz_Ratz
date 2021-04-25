@@ -16,6 +16,25 @@
     <string name="rodent">Rodent</string>
     <string name="grams">grams</string>
     <string name="previous_meal">Last meal</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="current_order">Current Order</string>
+    <string name="_4553_prime_pkwy">4553 Prime PKWY</string>
+    <string name="mchenry_il_60050">McHenry IL 60050</string>
+    <string name="_1">1</string>
+    <string name="small_asf">Small ASF</string>
+    <string name="_1_75">$1.75</string>
+    <string name="total_order">Total Order</string>
+    <string name="_205">$205</string>
+    <string name="send_order">Send Order</string>
+    <string name="background_image">background Image</string>
+    <string name="log_in">Log In</string>
+    <string name="password">Password</string>
+    <string name="email">Email</string>
+    <string name="don_t_have_an_account">Don\'t have an account?</string>
+    <string name="register">Register</string>
+    <string name="already_have_an_account">Already have an account?</string>
+    <string name="first_name">First name</string>
+    <string name="last_name">Last Name</string>
 
     <string-array name="rodents">
         <item>Pinky Mouse</item>
@@ -37,19 +56,6 @@
         <item>Large Rat</item>
         <item>Jumbo Rat</item>
     </string-array>
-
-
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="current_order">Current Order</string>
-    <string name="_4553_prime_pkwy">4553 Prime PKWY</string>
-    <string name="mchenry_il_60050">McHenry IL 60050</string>
-    <string name="_1">1</string>
-    <string name="small_asf">Small ASF</string>
-    <string name="_1_75">$1.75</string>
-    <string name="total_order">Total Order</string>
-    <string name="_205">$205</string>
-    <string name="send_order">Send Order</string>
 
 
 </resources>

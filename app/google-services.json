@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1027855274985",
+    "project_id": "datz-ratz",
+    "storage_bucket": "datz-ratz.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1027855274985:android:a6c5a6c3204b3f1eb8b178",
+        "android_client_info": {
+          "package_name": "com.bwawczak.datz_ratz"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1027855274985-sfpnqbv02c6hdn7c42jm72mlsho59giq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBgcv4oHN67znKqZfjiemLR1ZnOl5LSUEM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1027855274985-sfpnqbv02c6hdn7c42jm72mlsho59giq.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

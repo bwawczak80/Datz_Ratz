@@ -13,7 +13,8 @@ import kotlinx.android.synthetic.main.fragment_home.*
 import kotlinx.android.synthetic.main.fragment_home.view.*
 
 
-class HomeFragment : Fragment() {
+class
+HomeFragment : Fragment() {
 
     private lateinit var database: FirebaseDatabase
     private lateinit var reference: DatabaseReference
