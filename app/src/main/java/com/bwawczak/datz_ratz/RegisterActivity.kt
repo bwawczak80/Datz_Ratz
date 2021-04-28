@@ -8,8 +8,10 @@ import android.view.MotionEvent
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.bwawczak.datz_ratz.models.User
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
+
 import kotlinx.android.synthetic.main.activity_register.*
 
 class RegisterActivity : AppCompatActivity() {
@@ -68,6 +70,8 @@ class RegisterActivity : AppCompatActivity() {
                                 //Firebase registered user
                                 val firebaseUser: FirebaseUser = task.result!!.user!!
 
+                                val user = User()
+
                                 Toast.makeText(
                                     this@RegisterActivity, "You have been successfully registered.",
                                     Toast.LENGTH_LONG
@@ -101,7 +105,16 @@ class RegisterActivity : AppCompatActivity() {
 
             }
         }
+
+        txt_login.setOnClickListener {
+
+
+            onBackPressed()
+
+        }
     }
+
+
 
     override fun dispatchTouchEvent(ev: MotionEvent?): Boolean {
         if (currentFocus != null) {

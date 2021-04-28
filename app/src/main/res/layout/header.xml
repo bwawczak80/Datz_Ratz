@@ -7,6 +7,7 @@
     android:padding="16dp">
 
     <ImageView
+        android:id="@+id/logo_image"
         android:layout_width="85dp"
         android:layout_height="85dp"
         android:layout_gravity="start"
@@ -15,47 +16,47 @@
         android:src="@mipmap/ic_launcher_round" />
 
     <TextView
-        android:layout_margin="10dp"
         android:id="@+id/business_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="start"
+        android:layout_margin="10dp"
         android:text="@string/business_name"
         android:textColor="@color/white"
         android:textSize="18sp"
         android:textStyle="bold" />
 
     <TextView
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="5dp"
         android:id="@+id/business_address"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="start"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="5dp"
         android:text="@string/_4553_prime_pkwy"
         android:textColor="@color/white"
         android:textSize="15sp"
         android:textStyle="bold" />
 
     <TextView
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="5dp"
         android:id="@+id/business_city"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="start"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="5dp"
         android:text="@string/mchenry_il_60050"
         android:textColor="@color/white"
         android:textSize="15sp"
         android:textStyle="bold" />
 
     <TextView
-        android:layout_marginStart="10dp"
         android:id="@+id/business_phone"
-        android:layout_marginTop="5dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="start"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="5dp"
         android:text="@string/phone"
         android:textColor="@color/white"
         android:textSize="15sp"

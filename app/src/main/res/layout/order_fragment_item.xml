@@ -2,8 +2,8 @@
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/datz_black"
-    android:layout_margin="12dp">
+    android:layout_margin="12dp"
+    android:background="@color/datz_black">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -12,36 +12,36 @@
 
 
         <TextView
-            android:text="@string/_1"
             android:id="@+id/txt_qty"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@color/datz_black"
+            android:padding="8dp"
+            android:text="@string/_1"
             android:textColor="@color/white"
-            android:textSize="18sp"
-            android:padding="8dp" />
+            android:textSize="18sp" />
 
         <TextView
-            android:layout_toEndOf="@+id/txt_qty"
-            android:text="@string/small_asf"
             android:id="@+id/txt_rodent"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_toEndOf="@+id/txt_qty"
             android:background="@color/datz_black"
+            android:padding="8dp"
+            android:text="@string/small_asf"
             android:textColor="@color/white"
-            android:textSize="18sp"
-            android:padding="8dp" />
+            android:textSize="18sp" />
 
         <TextView
-            android:layout_toEndOf="@+id/txt_rodent"
-            android:text="@string/_1_75"
             android:id="@+id/txt_price"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_toEndOf="@+id/txt_rodent"
             android:background="@color/datz_black"
+            android:padding="8dp"
+            android:text="@string/_1_75"
             android:textColor="@color/white"
-            android:textSize="18sp"
-            android:padding="8dp" />
+            android:textSize="18sp" />
 
 
     </RelativeLayout>

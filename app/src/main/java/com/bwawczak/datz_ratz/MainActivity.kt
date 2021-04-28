@@ -1,6 +1,7 @@
 package com.bwawczak.datz_ratz
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.view.MenuItem
 import android.view.MotionEvent
@@ -10,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
 import androidx.fragment.app.FragmentTransaction
 import com.google.android.material.navigation.NavigationView
+import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.app_bar_main.*
 
@@ -18,12 +20,20 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     lateinit var addSnakeFragment: AddSnakeFragment
 
     //lateinit var viewPreviousFragment: ViewPreviousFragment
-    lateinit var viewOrderFragment: ViewOrderFragment
+    private lateinit var viewOrderFragment: ViewOrderFragment
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        //get information sent from registration screen
+        val userId = intent.getStringExtra("user_id")
+        val emailId = intent.getStringExtra("email_id")
+//        val firstNameId = intent.getStringExtra("first_name")
+//        val lastNameId = intent.getStringExtra("last_name")
+
+
 
         setSupportActionBar(toolBar)
         val actionBar = supportActionBar
@@ -70,14 +80,13 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                     .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
                     .commit()
             }
-//            R.id.view_prev -> {
-//                viewPreviousFragment = ViewPreviousFragment()
-//                supportFragmentManager
-//                    .beginTransaction()
-//                    .replace(R.id.frame_layout, viewPreviousFragment)
-//                    .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
-//                    .commit()
-//            }
+
+            R.id.logout_app -> {
+                FirebaseAuth.getInstance().signOut()
+                startActivity(Intent(this@MainActivity, LoginActivity::class.java))
+                finish()
+            }
+
             R.id.view_order -> {
                 viewOrderFragment = ViewOrderFragment()
                 supportFragmentManager

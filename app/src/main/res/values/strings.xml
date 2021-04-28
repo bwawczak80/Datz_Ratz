@@ -21,7 +21,6 @@
     <string name="_4553_prime_pkwy">4553 Prime PKWY</string>
     <string name="mchenry_il_60050">McHenry IL 60050</string>
     <string name="_1">1</string>
-    <string name="small_asf">Small ASF</string>
     <string name="_1_75">$1.75</string>
     <string name="total_order">Total Order</string>
     <string name="_205">$205</string>
@@ -35,6 +34,19 @@
     <string name="already_have_an_account">Already have an account?</string>
     <string name="first_name">First name</string>
     <string name="last_name">Last Name</string>
+    <string name="logout">Logout</string>
+    <string name="sunshine">Sunshine</string>
+    <string name="albino">Albino</string>
+    <string name="_225g">225g</string>
+    <string name="march_12_2021">March 12, 2021</string>
+    <string name="_222g">222g</string>
+    <string name="small_asf">Small ASF</string>
+    <string name="view_previous_orders_fragment">View Previous Orders Fragment</string>
+    <string name="forgot_password">Forgot password?</string>
+    <string name="forgot_password2">Forgot Password</string>
+    <string name="reset_link">A link to reset your password will be sent to email entered.</string>
+    <string name="submit">Submit</string>
+    <string name="phone_number">Phone Number</string>
 
     <string-array name="rodents">
         <item>Pinky Mouse</item>

@@ -3,50 +3,49 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ViewOrderFragment"
-    android:background="@color/datz_black">
+    android:background="@color/datz_black"
+    tools:context=".ViewOrderFragment">
 
     <androidx.recyclerview.widget.RecyclerView
-
-        android:layout_marginTop="60dp"
-        android:padding="4dp"
-        android:clipToPadding="false"
         android:id="@+id/orderRecyclerView"
         android:layout_width="match_parent"
         android:layout_height="500dp"
+        android:layout_marginTop="60dp"
+        android:clipToPadding="false"
+        android:padding="4dp"
         tools:listitem="@layout/order_fragment_item" />
 
     <TextView
         android:id="@+id/total_tag"
-        android:layout_marginTop="20dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/orderRecyclerView"
+        android:layout_marginTop="20dp"
         android:text="@string/total_order"
-        android:textSize="20sp"
         android:textColor="@color/white"
-        android:layout_below="@+id/orderRecyclerView" />
+        android:textSize="20sp" />
 
 
     <TextView
-        android:textSize="20sp"
-        android:layout_marginStart="60dp"
-        android:text="@string/_205"
-        android:textColor="@color/white"
-        android:layout_marginTop="20dp"
-        android:layout_below="@+id/orderRecyclerView"
-        android:layout_toEndOf="@+id/total_tag"
+        android:id="@+id/total_price"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/total_price"/>
+        android:layout_below="@+id/orderRecyclerView"
+        android:layout_marginStart="60dp"
+        android:layout_marginTop="20dp"
+        android:layout_toEndOf="@+id/total_tag"
+        android:text="@string/_205"
+        android:textColor="@color/white"
+        android:textSize="20sp" />
 
     <Button
+        android:id="@+id/btn_send"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/total_price"
+        android:layout_centerHorizontal="true"
         android:layout_margin="30dp"
-        android:text="@string/send_order"
-        android:layout_centerHorizontal="true"/>
-
+        android:text="@string/send_order" />
 
 
 </RelativeLayout>

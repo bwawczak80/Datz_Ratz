@@ -2,10 +2,11 @@
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/datz_black"
-    android:layout_margin="12dp">
+    android:layout_margin="12dp"
+    android:background="@color/datz_black">
 
     <RelativeLayout
+        android:id="@+id/home_frag_relative_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/datz_black">
@@ -15,113 +16,113 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@color/datz_black"
-            android:text="Sunshine"
+            android:padding="8dp"
+            android:text="@string/sunshine"
             android:textColor="@color/white"
-            android:textSize="18sp"
-            android:padding="8dp" />
+            android:textSize="18sp" />
 
         <TextView
             android:id="@+id/text_morph"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@color/datz_black"
-            android:text="Albino"
-            android:textColor="@color/white"
-            android:textSize="18sp"
             android:layout_toEndOf="@+id/text_name"
-            android:padding="8dp" />
+            android:background="@color/datz_black"
+            android:padding="8dp"
+            android:text="@string/albino"
+            android:textColor="@color/white"
+            android:textSize="18sp" />
 
         <TextView
             android:id="@+id/text_weight"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@color/datz_black"
-            android:text="225g"
-            android:textColor="@color/white"
-            android:textSize="18sp"
             android:layout_toEndOf="@+id/text_morph"
-            android:padding="8dp" />
+            android:background="@color/datz_black"
+            android:padding="8dp"
+            android:text="@string/_225g"
+            android:textColor="@color/white"
+            android:textSize="18sp" />
 
         <TextView
             android:id="@+id/text_rodent"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@color/datz_black"
-            android:text="Small ASF"
-            android:textColor="@color/white"
-            android:textSize="18sp"
             android:layout_toEndOf="@+id/text_weight"
-            android:padding="8dp" />
+            android:background="@color/datz_black"
+            android:padding="8dp"
+            android:text="@string/small_asf"
+            android:textColor="@color/white"
+            android:textSize="18sp" />
 
         <TextView
             android:id="@+id/date_one"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/text_name"
-            android:text="March 12, 2021"
-            android:textColor="@color/white"
             android:background="@color/datz_black"
-            android:textSize="14sp"
-            android:padding="6dp" />
+            android:padding="6dp"
+            android:text="@string/march_12_2021"
+            android:textColor="@color/white"
+            android:textSize="14sp" />
 
         <TextView
             android:id="@+id/weight_one"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_toEndOf="@+id/date_one"
             android:layout_below="@+id/text_name"
-            android:text="222g"
-            android:textColor="@color/white"
+            android:layout_toEndOf="@+id/date_one"
             android:background="@color/datz_black"
-            android:textSize="14sp"
-            android:padding="6dp" />
+            android:padding="6dp"
+            android:text="@string/_222g"
+            android:textColor="@color/white"
+            android:textSize="14sp" />
 
         <TextView
             android:id="@+id/rodent_one"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_toEndOf="@+id/weight_one"
             android:layout_below="@+id/text_name"
-            android:text="Small ASF"
-            android:textColor="@color/white"
+            android:layout_toEndOf="@+id/weight_one"
             android:background="@color/datz_black"
-            android:textSize="14sp"
-            android:padding="6dp" />
+            android:padding="6dp"
+            android:text="@string/small_asf"
+            android:textColor="@color/white"
+            android:textSize="14sp" />
 
         <TextView
             android:id="@+id/date_two"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/date_one"
-            android:text="March 12, 2021"
-            android:textColor="@color/white"
             android:background="@color/datz_black"
-            android:textSize="14sp"
-            android:padding="6dp" />
+            android:padding="6dp"
+            android:text="@string/march_12_2021"
+            android:textColor="@color/white"
+            android:textSize="14sp" />
 
         <TextView
             android:id="@+id/weight_two"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_toEndOf="@+id/date_one"
             android:layout_below="@+id/date_one"
-            android:text="222g"
-            android:textColor="@color/white"
+            android:layout_toEndOf="@+id/date_one"
             android:background="@color/datz_black"
-            android:textSize="14sp"
-            android:padding="6dp" />
+            android:padding="6dp"
+            android:text="@string/_222g"
+            android:textColor="@color/white"
+            android:textSize="14sp" />
 
         <TextView
             android:id="@+id/rodent_two"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_toEndOf="@+id/weight_one"
             android:layout_below="@+id/date_one"
-            android:text="Small ASF"
-            android:textColor="@color/white"
+            android:layout_toEndOf="@+id/weight_one"
             android:background="@color/datz_black"
-            android:textSize="14sp"
-            android:padding="6dp" />
+            android:padding="6dp"
+            android:text="@string/small_asf"
+            android:textColor="@color/white"
+            android:textSize="14sp" />
 
 
     </RelativeLayout>
