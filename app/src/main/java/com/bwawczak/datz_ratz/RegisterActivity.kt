@@ -8,6 +8,7 @@ import android.view.MotionEvent
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.bwawczak.datz_ratz.firestore.FirestoreClass
 import com.bwawczak.datz_ratz.models.User
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
@@ -53,12 +54,21 @@ class RegisterActivity : AppCompatActivity() {
                         Toast.LENGTH_LONG
                     ).show()
                 }
+
+                TextUtils.isEmpty(reg_phone.text.toString().trim { it <= ' ' }) -> {
+                    Toast.makeText(
+                        this@RegisterActivity,
+                        "Please enter a valid phone number.",
+                        Toast.LENGTH_LONG
+                    ).show()
+                }
                 else -> {
 
                     val fName: String = reg_first_name.text.toString().trim { it <= ' ' }
                     val lName: String = reg_last_name.text.toString().trim { it <= ' ' }
                     val eMail: String = reg_email.text.toString().trim { it <= ' ' }
                     val pWord: String = reg_password.text.toString().trim { it <= ' ' }
+                    val phone: String = reg_phone.text.toString().trim { it <= ' ' }
 
                     // Create an instance and register with email and password
                     FirebaseAuth.getInstance().createUserWithEmailAndPassword(eMail, pWord)
@@ -70,27 +80,26 @@ class RegisterActivity : AppCompatActivity() {
                                 //Firebase registered user
                                 val firebaseUser: FirebaseUser = task.result!!.user!!
 
-                                val user = User()
+                                val user = User(
+                                    firebaseUser.uid,
+                                    reg_first_name.text.toString().trim { it <= ' ' },
+                                    reg_last_name.text.toString().trim { it <= ' ' },
+                                    reg_email.text.toString().trim { it <= ' ' },
+                                    reg_phone.text.toString().trim { it <= ' ' }
+                                )
 
-                                Toast.makeText(
-                                    this@RegisterActivity, "You have been successfully registered.",
-                                    Toast.LENGTH_LONG
-                                ).show()
+                                FirestoreClass().registerUser(this, user)
 
-                                /** Here the user is registered and automatically signed in, so
-                                 * we send them to the main screen with the user id and email that they
-                                 * registered with.
-                                 */
 
                                 val intent =
                                     Intent(this@RegisterActivity, MainActivity::class.java)
                                 intent.flags =
                                     Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-                                intent.putExtra("user_id", firebaseUser.uid)
-                                intent.putExtra("email_id", eMail)
-                                intent.putExtra("first_name", fName)
-                                intent.putExtra("last_name", lName)
-                                startActivity(intent)
+//                                intent.putExtra("user_id", firebaseUser.uid)
+//                                intent.putExtra("email_id", eMail)
+//                                intent.putExtra("first_name", fName)
+//                                intent.putExtra("last_name", lName)
+//                                startActivity(intent)
                                 finish()
                             } else {
                                 // If the registration is not successful...
@@ -112,6 +121,11 @@ class RegisterActivity : AppCompatActivity() {
             onBackPressed()
 
         }
+    }
+
+    fun userRegistrationSuccess(){
+        Toast.makeText(this@RegisterActivity, resources.getString(R.string.user_registered),
+            Toast.LENGTH_LONG).show()
     }
 
 

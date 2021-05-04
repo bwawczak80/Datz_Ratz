@@ -5,6 +5,5 @@ class User (
     var firstName: String = "",
     val lastName: String = "",
     val email: String = "",
-    val phone: String = "",
-    val profileCompleted: Int = 0
+    val phone: String = ""
 )

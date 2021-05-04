@@ -47,6 +47,7 @@
     <string name="reset_link">A link to reset your password will be sent to email entered.</string>
     <string name="submit">Submit</string>
     <string name="phone_number">Phone Number</string>
+    <string name="user_registered">You have been registered successfully.</string>
 
     <string-array name="rodents">
         <item>Pinky Mouse</item>
@@ -67,6 +68,7 @@
         <item>Medium Rat</item>
         <item>Large Rat</item>
         <item>Jumbo Rat</item>
+        <item>None</item>
     </string-array>
 
 

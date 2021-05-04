@@ -28,8 +28,8 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         setContentView(R.layout.activity_main)
 
         //get information sent from registration screen
-        val userId = intent.getStringExtra("user_id")
-        val emailId = intent.getStringExtra("email_id")
+       // val userId = intent.getStringExtra("user_id")
+        //val emailId = intent.getStringExtra("email_id")
 //        val firstNameId = intent.getStringExtra("first_name")
 //        val lastNameId = intent.getStringExtra("last_name")
 
