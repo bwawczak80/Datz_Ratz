@@ -30,12 +30,12 @@ class FirestoreClass {
             }
     }
 
-    fun addSnake(activity: AddSnakeFragment, userInfo: User) {
-        mFireStore.collection("users").document(userInfo.id).collection("snakes")
-            .set(userInfo, SetOptions.merge()).addOnSuccessListener {
-                activity.
-            }
-    }
+//    fun addSnake(activity: AddSnakeFragment, userInfo: User) {
+//        mFireStore.collection("users").document(userInfo.id).collection("snakes")
+//            .set(userInfo, SetOptions.merge()).addOnSuccessListener {
+//                activity.
+//            }
+//    }
 
 
 
