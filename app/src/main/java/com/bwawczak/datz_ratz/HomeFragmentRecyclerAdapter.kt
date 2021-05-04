@@ -7,7 +7,8 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.home_fragment_item.view.*
 
-class HomeFragmentRecyclerAdapter(private val itemList: List<RecyclerViewData>) :
+class HomeFragmentRecyclerAdapter(private val itemList: List<RecyclerViewData>,
+private val listener: OnItemClickListener) :
     RecyclerView.Adapter<HomeFragmentRecyclerAdapter.HomeViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HomeViewHolder {
@@ -38,7 +39,7 @@ class HomeFragmentRecyclerAdapter(private val itemList: List<RecyclerViewData>) 
     override fun getItemCount() = itemList.size
 
 
-    class HomeViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    inner class HomeViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView), View.OnClickListener {
         val textNameItem: TextView = itemView.text_name
         val textMorphItem: TextView = itemView.text_morph
         val textWeightItem: TextView = itemView.text_weight
@@ -49,5 +50,23 @@ class HomeFragmentRecyclerAdapter(private val itemList: List<RecyclerViewData>) 
         val dateTwoItem: TextView = itemView.date_two
         val rodentOneItem: TextView = itemView.rodent_one
         val rodentTwoItem: TextView = itemView.rodent_two
+
+        init {
+            itemView.setOnClickListener(this)
+
+        }
+
+        override fun onClick(v: View?) {
+            val position:Int = absoluteAdapterPosition
+            if (position != RecyclerView.NO_POSITION) {
+                listener.onItemClick(position)
+            }
+
+        }
     }
+
+    interface OnItemClickListener {
+        fun onItemClick(position: Int)
+    }
+
 }

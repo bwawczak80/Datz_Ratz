@@ -91,9 +91,6 @@ class LoginActivity : AppCompatActivity() {
         }
     }
 
-
-
-
     override fun dispatchTouchEvent(ev: MotionEvent?): Boolean {
         if (currentFocus != null) {
             val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager

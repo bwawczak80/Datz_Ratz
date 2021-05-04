@@ -48,6 +48,12 @@
     <string name="submit">Submit</string>
     <string name="phone_number">Phone Number</string>
     <string name="user_registered">You have been registered successfully.</string>
+    <string name="log">Log</string>
+    <string name="in_shed">In Shed</string>
+    <string name="_0">0</string>
+    <string name="add_rodent">Add Rodent</string>
+    <string name="log_for">Log for:</string>
+    <string name="snake">snake</string>
 
     <string-array name="rodents">
         <item>Pinky Mouse</item>
