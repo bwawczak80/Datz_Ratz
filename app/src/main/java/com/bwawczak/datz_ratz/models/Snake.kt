@@ -4,7 +4,6 @@ import java.io.Serializable
 
 class Snake(
 
-    val id: String = "",
     val snakeName: String = "",
     val morph: String = "",
     val logs: ArrayList<LogItem>

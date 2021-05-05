@@ -22,8 +22,8 @@ class RegisterActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_register)
 
-        val snakes = arrayOf<Snake>()
-        val logs = arrayOf<LogItem>()
+        val snakes = arrayListOf<Snake>()
+        val logs = arrayListOf<LogItem>()
 
         btn_register.setOnClickListener {
             when {
@@ -91,7 +91,9 @@ class RegisterActivity : AppCompatActivity() {
                                     reg_last_name.text.toString().trim { it <= ' ' },
                                     reg_email.text.toString().trim { it <= ' ' },
                                     reg_phone.text.toString().trim { it <= ' ' },
-                                    arrayListOf<Snake>()
+                                    //arrayListOf<Snake>()
+                                    snakes
+
                                 )
 
                                 FirestoreClass().registerUser(this, user)
@@ -101,7 +103,6 @@ class RegisterActivity : AppCompatActivity() {
                                     Intent(this@RegisterActivity, MainActivity::class.java)
                                 intent.flags =
                                     Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-
                                 finish()
                             } else {
                                 // If the registration is not successful...
@@ -119,7 +120,6 @@ class RegisterActivity : AppCompatActivity() {
 
         txt_login.setOnClickListener {
 
-
             onBackPressed()
 
         }
@@ -129,7 +129,6 @@ class RegisterActivity : AppCompatActivity() {
         Toast.makeText(this@RegisterActivity, resources.getString(R.string.user_registered),
             Toast.LENGTH_LONG).show()
     }
-
 
 
     override fun dispatchTouchEvent(ev: MotionEvent?): Boolean {

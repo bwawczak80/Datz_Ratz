@@ -54,6 +54,7 @@
     <string name="add_rodent">Add Rodent</string>
     <string name="log_for">Log for:</string>
     <string name="snake">snake</string>
+    <string name="_5_4_2021">5/4/2021</string>
 
     <string-array name="rodents">
         <item>Pinky Mouse</item>

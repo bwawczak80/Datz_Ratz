@@ -8,6 +8,7 @@
     tools:context=".AddSnakeLog">
 
     <LinearLayout
+
         android:id="@+id/titleLayout"
         android:gravity="center_vertical"
         android:orientation="horizontal"
@@ -18,9 +19,7 @@
         android:id="@+id/logTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="10dp"
+        android:layout_margin="20dp"
         android:textColor="@color/white"
         android:textSize="20sp"
         android:text="@string/log_for"
@@ -30,9 +29,7 @@
             android:id="@+id/logSnakeTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginEnd="10dp"
+            android:layout_margin="20dp"
             android:textColor="@color/white"
             android:textSize="20sp"
             android:text="@string/snake"
@@ -98,7 +95,7 @@
         android:layout_marginEnd="10dp">
 
         <AutoCompleteTextView
-            android:id="@+id/autoCompleteTextView"
+            android:id="@+id/autoCompleteTextViewLog"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:backgroundTint="@color/datz_black"
