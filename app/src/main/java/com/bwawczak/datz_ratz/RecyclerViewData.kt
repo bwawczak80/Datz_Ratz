@@ -5,6 +5,7 @@ data class RecyclerViewData(
     val textMorph: String,
     val textWeight: String,
     val textRodent: String,
+
     val dateOne: String,
     val weightOne: String,
     val rodentOne: String,

@@ -16,6 +16,8 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
+        login_email.setText("megan@user.com")
+        login_password.setText("password")
         txt_register.setOnClickListener {
 
             startActivity(Intent(this@LoginActivity, RegisterActivity::class.java))

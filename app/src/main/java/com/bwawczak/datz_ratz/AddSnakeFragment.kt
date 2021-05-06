@@ -35,7 +35,7 @@ class AddSnakeFragment : Fragment() {
     ): View? {
 
         // get current User
-        val currentUser = FirestoreClass().getCurrentUserId()
+        val userID = FirestoreClass().getCurrentUserId()
 
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_add_snake, container, false)
@@ -89,29 +89,25 @@ class AddSnakeFragment : Fragment() {
                 }
                 else -> {
 
-
-
-                    val snake = Snake(
-                        view.nameInput.text.toString().trim { it <= ' ' },
-                        view.morphInput.text.toString().trim { it <= ' ' },
-                        arrayListOf<LogItem>()
-                    )
-
                     val snakeLogItem = LogItem(
                         view.weightInput.text.toString().trim { it <= ' ' },
                         view.dateInput.text.toString().trim { it <= ' ' },
                         view.autoCompleteTextView.text.toString(),
                         isInShed
-
-
                     )
 
-                    //TODO update Firebase
-                    //TODO transition back to Home Fragment
+                    val snake = Snake(
+                        view.nameInput.text.toString().trim { it <= ' ' },
+                        view.morphInput.text.toString().trim { it <= ' ' },
+                        arrayListOf<LogItem>(snakeLogItem)
+                    )
 
+                    //TODO update Firebase to add snake
+                    FirestoreClass().addSnake(userID, snake)
 
                 }
             }
+
 
         }
 

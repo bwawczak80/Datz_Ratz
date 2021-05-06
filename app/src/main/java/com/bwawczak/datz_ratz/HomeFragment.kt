@@ -8,6 +8,8 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.bwawczak.datz_ratz.firestore.FirestoreClass
+import com.bwawczak.datz_ratz.models.Snake
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import kotlinx.android.synthetic.main.fragment_home.view.*
@@ -15,9 +17,6 @@ import kotlinx.android.synthetic.main.fragment_home.view.*
 
 class
 HomeFragment : Fragment(), HomeFragmentRecyclerAdapter.OnItemClickListener {
-
-    private lateinit var database: FirebaseDatabase
-    private lateinit var reference: DatabaseReference
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -28,12 +27,20 @@ HomeFragment : Fragment(), HomeFragmentRecyclerAdapter.OnItemClickListener {
         val view = inflater.inflate(R.layout.fragment_home, container, false)
         val exampleList = 30.generateDummyList()
 
-        view.recyclerView.adapter = HomeFragmentRecyclerAdapter(exampleList, this)
+        val adapter = HomeFragmentRecyclerAdapter(arrayListOf(), this)
+        //view.recyclerView.adapter = HomeFragmentRecyclerAdapter(arrayListOf(), this)
         view.recyclerView.layoutManager = LinearLayoutManager(context)
         view.recyclerView.setHasFixedSize(true)
+        view.recyclerView.adapter = adapter
 
-        database = FirebaseDatabase.getInstance()
-        reference = database.getReference("users")
+        // read snakes from firestore
+
+        FirestoreClass().listSnakes(FirestoreClass().getCurrentUserId(), object: FirestoreClass.Callback {
+            override fun onSuccess(snakes: ArrayList<Snake>) {
+                adapter.setItemList(snakes)
+                adapter.notifyDataSetChanged()
+            }
+        })
 
         return view
     }

@@ -6,5 +6,5 @@ class Snake(
 
     val snakeName: String = "",
     val morph: String = "",
-    val logs: ArrayList<LogItem>
+    val logs: ArrayList<LogItem>  = arrayListOf()
 ) : Serializable {}

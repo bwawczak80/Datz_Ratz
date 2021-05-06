@@ -11,119 +11,119 @@
         android:layout_height="match_parent"
         android:background="@color/datz_black">
 
-        <TextView
-            android:id="@+id/text_name"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:id="@+id/snakeNameLinearLayout"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/datz_black"
-            android:padding="8dp"
-            android:text="@string/sunshine"
-            android:textColor="@color/white"
-            android:textSize="18sp" />
+            android:orientation="horizontal">
 
-        <TextView
-            android:id="@+id/text_morph"
-            android:layout_width="wrap_content"
+            <TextView
+                android:id="@+id/text_name"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight=".50"
+                android:background="@color/datz_black"
+                android:padding="8dp"
+                android:textStyle="bold"
+
+                android:text="@string/sunshine"
+                android:textColor="@color/white"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/text_morph"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight=".50"
+                android:textStyle="bold"
+                android:background="@color/datz_black"
+                android:padding="8dp"
+                android:text="@string/albino"
+                android:textColor="@color/white"
+                android:textSize="18sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/logOneLinearLayout"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_toEndOf="@+id/text_name"
-            android:background="@color/datz_black"
-            android:padding="8dp"
-            android:text="@string/albino"
-            android:textColor="@color/white"
-            android:textSize="18sp" />
+            android:layout_below="@+id/snakeNameLinearLayout"
+            android:orientation="horizontal">
 
-        <TextView
-            android:id="@+id/text_weight"
-            android:layout_width="wrap_content"
+            <TextView
+                android:id="@+id/date_one"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight=".33"
+                android:background="@color/datz_black"
+                android:padding="8dp"
+                android:text="@string/march_12_2021"
+                android:textColor="@color/white"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/weight_one"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight=".33"
+                android:background="@color/datz_black"
+                android:padding="8dp"
+                android:text="@string/_222g"
+                android:textColor="@color/white"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/rodent_one"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight=".33"
+                android:background="@color/datz_black"
+                android:padding="8dp"
+                android:text="@string/small_asf"
+                android:textColor="@color/white"
+                android:textSize="14sp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/logTwoLinearLayout"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_toEndOf="@+id/text_morph"
-            android:background="@color/datz_black"
-            android:padding="8dp"
-            android:text="@string/_225g"
-            android:textColor="@color/white"
-            android:textSize="18sp" />
+            android:layout_below="@+id/logOneLinearLayout">
 
-        <TextView
-            android:id="@+id/text_rodent"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_toEndOf="@+id/text_weight"
-            android:background="@color/datz_black"
-            android:padding="8dp"
-            android:text="@string/small_asf"
-            android:textColor="@color/white"
-            android:textSize="18sp" />
+            <TextView
+                android:id="@+id/date_two"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight=".33"
+                android:background="@color/datz_black"
+                android:padding="6dp"
+                android:text="@string/march_12_2021"
+                android:textColor="@color/white"
+                android:textSize="14sp" />
 
-        <TextView
-            android:id="@+id/date_one"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/text_name"
-            android:background="@color/datz_black"
-            android:padding="6dp"
-            android:text="@string/march_12_2021"
-            android:textColor="@color/white"
-            android:textSize="14sp" />
+            <TextView
+                android:id="@+id/weight_two"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight=".33"
+                android:background="@color/datz_black"
+                android:padding="6dp"
+                android:text="@string/_222g"
+                android:textColor="@color/white"
+                android:textSize="14sp" />
 
-        <TextView
-            android:id="@+id/weight_one"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/text_name"
-            android:layout_toEndOf="@+id/date_one"
-            android:background="@color/datz_black"
-            android:padding="6dp"
-            android:text="@string/_222g"
-            android:textColor="@color/white"
-            android:textSize="14sp" />
-
-        <TextView
-            android:id="@+id/rodent_one"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/text_name"
-            android:layout_toEndOf="@+id/weight_one"
-            android:background="@color/datz_black"
-            android:padding="6dp"
-            android:text="@string/small_asf"
-            android:textColor="@color/white"
-            android:textSize="14sp" />
-
-        <TextView
-            android:id="@+id/date_two"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/date_one"
-            android:background="@color/datz_black"
-            android:padding="6dp"
-            android:text="@string/march_12_2021"
-            android:textColor="@color/white"
-            android:textSize="14sp" />
-
-        <TextView
-            android:id="@+id/weight_two"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/date_one"
-            android:layout_toEndOf="@+id/date_one"
-            android:background="@color/datz_black"
-            android:padding="6dp"
-            android:text="@string/_222g"
-            android:textColor="@color/white"
-            android:textSize="14sp" />
-
-        <TextView
-            android:id="@+id/rodent_two"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/date_one"
-            android:layout_toEndOf="@+id/weight_one"
-            android:background="@color/datz_black"
-            android:padding="6dp"
-            android:text="@string/small_asf"
-            android:textColor="@color/white"
-            android:textSize="14sp" />
-
+            <TextView
+                android:id="@+id/rodent_two"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight=".33"
+                android:background="@color/datz_black"
+                android:padding="6dp"
+                android:text="@string/small_asf"
+                android:textColor="@color/white"
+                android:textSize="14sp" />
+        </LinearLayout>
 
     </RelativeLayout>
 
