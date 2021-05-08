@@ -102,7 +102,7 @@ class AddSnakeFragment : Fragment() {
                         arrayListOf<LogItem>(snakeLogItem)
                     )
 
-                    //TODO update Firebase to add snake
+                    //update Firebase to add snake
                     FirestoreClass().addSnake(userID, snake)
 
                 }

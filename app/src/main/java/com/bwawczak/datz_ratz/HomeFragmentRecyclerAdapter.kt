@@ -70,6 +70,9 @@ class HomeFragmentRecyclerAdapter(private var itemList: ArrayList<Snake>,
     public fun setItemList(items: ArrayList<Snake>) {
         itemList = items
     }
+    public fun getItem(position: Int) : Snake {
+        return itemList[position]
+    }
 
     inner class HomeViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView), View.OnClickListener {
         val textNameItem: TextView = itemView.text_name

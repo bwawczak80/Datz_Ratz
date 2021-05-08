@@ -2,7 +2,6 @@ package com.bwawczak.datz_ratz
 
 import android.annotation.SuppressLint
 import android.content.Context
-import android.content.Intent
 import android.os.Bundle
 import android.text.TextUtils
 import android.view.MotionEvent
@@ -10,7 +9,9 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.bwawczak.datz_ratz.firestore.FirestoreClass
 import com.bwawczak.datz_ratz.models.LogItem
+import com.bwawczak.datz_ratz.models.Snake
 import kotlinx.android.synthetic.main.activity_add_snake_log.*
 import java.text.SimpleDateFormat
 import java.util.*
@@ -21,14 +22,16 @@ class AddSnakeLog : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_snake_log)
 
-        val logs = arrayOf<LogItem>()
+        val snake = intent.getSerializableExtra("snake") as Snake
+        val position = intent.getIntExtra("index", 0)
+
 
         //create arrayAdapter for custom drop down menu
-
         val rodentList = resources.getStringArray(R.array.rodents)
         val arrayAdapter = ArrayAdapter(this, R.layout.dropdown_item, rodentList)
         this.autoCompleteTextViewLog.setAdapter(arrayAdapter)
 
+        logSnakeTitle.text = snake.snakeName
 
         logBtn.setOnClickListener {
             //get user input data
@@ -52,11 +55,11 @@ class AddSnakeLog : AppCompatActivity() {
                 }
                 else -> {
                     //get date and time stamp
-                    val datePattern ="dd/MM/yyyy"
+                    val datePattern = "MM/dd/yyyy"
                     val simpleDateFormat = SimpleDateFormat(datePattern)
                     val date = simpleDateFormat.format(Date())
-
-                    val isInShed:Boolean = checkBox.isChecked
+                    val isInShed: Boolean = checkBox.isChecked
+                    println(date)
 
 
                     val logs = LogItem(
@@ -64,21 +67,21 @@ class AddSnakeLog : AppCompatActivity() {
                         date,
                         autoCompleteTextViewLog.text.toString(),
                         isInShed
-
                     )
-                    //transition back to homeFragment
-                    val intent =
-                        Intent(this@AddSnakeLog, MainActivity::class.java)
-                    intent.flags =
-                        Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-                    startActivity(intent)
+
+                    //update user in Firebase
+                    snake.logs.add(logs)
 
 
+                    FirestoreClass().updateLogItem(FirestoreClass().getCurrentUserId(),
+                        position, snake, object : FirestoreClass.Callback {
+                            override fun onSuccess(snakes: ArrayList<Snake>?) {
+                                onBackPressed()
+                            }
+
+                        })
                 }
             }
-
-            //TODO update user in Firebase
-
         }
 
     }
@@ -90,9 +93,6 @@ class AddSnakeLog : AppCompatActivity() {
         }
         return super.dispatchTouchEvent(ev)
     }
-
-    //TODO override onbackpressed()
-
 
 
 }

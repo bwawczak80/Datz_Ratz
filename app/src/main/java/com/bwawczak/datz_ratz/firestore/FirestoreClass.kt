@@ -1,17 +1,18 @@
 package com.bwawczak.datz_ratz.firestore
 
 import android.util.Log
-import com.bwawczak.datz_ratz.AddSnakeFragment
 import com.bwawczak.datz_ratz.RegisterActivity
 import com.bwawczak.datz_ratz.models.Snake
 import com.bwawczak.datz_ratz.models.User
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.SetOptions
-import com.google.firebase.firestore.ktx.toObject
 
 class FirestoreClass {
+
+    interface Callback {
+        fun onSuccess(snakes: ArrayList<Snake>?)
+    }
 
 
     private val mFireStore = FirebaseFirestore.getInstance()
@@ -41,17 +42,17 @@ class FirestoreClass {
                 if (documentSnapshot.exists()) {
                     //val user = documentSnapshot.toObject<User>()
                     val user = documentSnapshot.toObject(User::class.java)
-                    Log.d("FireStore", "user = ${user}")
+                    Log.d("FireStore", "user = $user")
 
-                    var snakes : ArrayList<Snake> = ArrayList()// user?.snakes?.add(snake)
+                    val snakes : ArrayList<Snake> = ArrayList()// user?.snakes?.add(snake)
                     //var snakes = user?.snakes?.add(snake)
                     user?.snakes?.let { snakes.addAll(it) }
                     snakes.add(snake)
 
-                    Log.d("FireStore", "snakes = ${snakes}")
+                    Log.d("FireStore", "snakes = $snakes")
 
                     mFireStore.collection("users").document(userID)
-                        // here should update "users" to add snake rather than update "snakes"
+
                         //.update("snakes", FieldValue.arrayUnion(snakes))
                         .update(mapOf(
                             "snakes" to snakes
@@ -64,9 +65,41 @@ class FirestoreClass {
 
     }
 
-    interface Callback {
-        fun onSuccess(snakes:  ArrayList<Snake>)
+    fun updateLogItem(userID: String, index: Int , snake: Snake, listener : Callback) {
+
+        mFireStore.collection("users").document(userID)
+            .get()
+            .addOnSuccessListener { documentSnapshot ->
+                if (documentSnapshot.exists()) {
+                    //val user = documentSnapshot.toObject<User>()
+                    val user = documentSnapshot.toObject(User::class.java)
+                    Log.d("FireStore", "user = $user")
+
+                    val snakes : ArrayList<Snake> = ArrayList()// user?.snakes?.add(snake)
+                    //var snakes = user?.snakes?.add(snake)
+                    user?.snakes?.let { snakes.addAll(it) }
+
+                    snakes[index] = snake
+                    //snakes.set(index, snake)
+
+                    Log.d("FireStore", "snakes = $snakes")
+
+                    mFireStore.collection("users").document(userID)
+
+                        //.update("snakes", FieldValue.arrayUnion(snakes))
+                        .update(mapOf(
+                            "snakes" to snakes
+                        ))
+                        .addOnSuccessListener {
+                            Log.d("FireStore", "update success =========")
+                            listener.onSuccess(null)
+                        }
+                }
+            }
+
     }
+
+
 
     fun listSnakes(userID: String, listener : Callback) {
 
@@ -83,21 +116,18 @@ class FirestoreClass {
 
     }
 
-
-
-
 // get CurrentUser from Authentication module
-fun getCurrentUserId(): String {
-    //gets and instance of the currentUser
-    val currentUser = FirebaseAuth.getInstance().currentUser
+    fun getCurrentUserId(): String {
+        //gets and instance of the currentUser
+        val currentUser = FirebaseAuth.getInstance().currentUser
 
-    var currentUserID = ""
-    if (currentUser != null) {
-        currentUserID = currentUser.uid
+        var currentUserID = ""
+        if (currentUser != null) {
+            currentUserID = currentUser.uid
+        }
+
+        return currentUserID
     }
-
-    return currentUserID
-}
 
 
 }
