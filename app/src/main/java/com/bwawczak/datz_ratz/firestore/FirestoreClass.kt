@@ -1,10 +1,13 @@
 package com.bwawczak.datz_ratz.firestore
 
+import android.app.Activity
 import android.util.Log
+import com.bwawczak.datz_ratz.LoginActivity
 import com.bwawczak.datz_ratz.RegisterActivity
 import com.bwawczak.datz_ratz.models.LogItem
 import com.bwawczak.datz_ratz.models.Snake
 import com.bwawczak.datz_ratz.models.User
+import com.bwawczak.datz_ratz.utils.Constants
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.SetOptions
@@ -16,7 +19,7 @@ class FirestoreClass {
     }
 
     interface RecentLogItemCallback {
-        fun onSuccess(logItems: ArrayList<LogItem>)
+        fun onSuccess(logItems: ArrayList<LogItem>, user: User)
     }
 
     private val mFireStore = FirebaseFirestore.getInstance()
@@ -24,7 +27,7 @@ class FirestoreClass {
     fun registerUser(activity: RegisterActivity, userInfo: User) {
 
         //this will create the collection "users" the first time it is run.
-        mFireStore.collection("users")
+        mFireStore.collection(Constants.USERS)
             //Document ID for users fields.
             .document(userInfo.id)
             .set(userInfo, SetOptions.merge())
@@ -40,7 +43,7 @@ class FirestoreClass {
 
     fun addSnake(userID: String, snake: Snake) {
 
-        mFireStore.collection("users").document(userID)
+        mFireStore.collection(Constants.USERS).document(userID)
             .get()
             .addOnSuccessListener { documentSnapshot ->
                 if (documentSnapshot.exists()) {
@@ -55,7 +58,7 @@ class FirestoreClass {
 
                     Log.d("FireStore", "snakes = $snakes")
 
-                    mFireStore.collection("users").document(userID)
+                    mFireStore.collection(Constants.USERS).document(userID)
 
                         // update("snakes"
                         .update(
@@ -73,7 +76,7 @@ class FirestoreClass {
 
     fun updateLogItem(userID: String, index: Int, snake: Snake, listener: Callback) {
 
-        mFireStore.collection("users").document(userID)
+        mFireStore.collection(Constants.USERS).document(userID)
             .get()
             .addOnSuccessListener { documentSnapshot ->
                 if (documentSnapshot.exists()) {
@@ -89,7 +92,7 @@ class FirestoreClass {
 
                     Log.d("FireStore", "snakes = $snakes")
 
-                    mFireStore.collection("users").document(userID)
+                    mFireStore.collection(Constants.USERS).document(userID)
 
 
                         .update(
@@ -109,7 +112,7 @@ class FirestoreClass {
 
     fun listSnakes(userID: String, listener: Callback) {
 
-        mFireStore.collection("users").document(userID)
+        mFireStore.collection(Constants.USERS).document(userID)
             .get()
             .addOnSuccessListener { documentSnapshot ->
                 if (documentSnapshot.exists()) {
@@ -125,7 +128,7 @@ class FirestoreClass {
 
     fun listRecentLogItems(userID: String, listener: RecentLogItemCallback) {
 
-        mFireStore.collection("users").document(userID)
+        mFireStore.collection(Constants.USERS).document(userID)
             .get()
             .addOnSuccessListener { documentSnapshot ->
                 if (documentSnapshot.exists()) {
@@ -138,10 +141,32 @@ class FirestoreClass {
                         val recentLogItem = snake.logs.last()
                         arrayRecentLogs.add(recentLogItem)
                     }
-                    listener.onSuccess(arrayRecentLogs)
+
+                    listener.onSuccess(arrayRecentLogs, user)
                 }
             }
 
+    }
+
+    fun getUserDetails(activity: Activity) {
+        // Pass the collection name from which we want the data
+        mFireStore.collection(Constants.USERS)
+            //get the document id
+            .document(getCurrentUserId())
+            .get()
+            .addOnSuccessListener { document ->
+                Log.i(activity.javaClass.simpleName, document.toString())
+                // Here we get the document snapshot which is converted into the User Data model object
+                val user = document.toObject(User::class.java)!!
+                //pass the result to the Login Activity
+                when(activity) {
+                    is LoginActivity -> {
+                        //Call a function to transfer results
+                        activity.userLoggedInSuccess(user)
+
+                    }
+                }
+            }
     }
 
 
@@ -158,6 +183,4 @@ class FirestoreClass {
 
         return currentUserID
     }
-
-
 }

@@ -8,6 +8,8 @@ import android.view.MotionEvent
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.bwawczak.datz_ratz.firestore.FirestoreClass
+import com.bwawczak.datz_ratz.models.User
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_login.*
 
@@ -25,7 +27,6 @@ class LoginActivity : AppCompatActivity() {
 
         btn_login.setOnClickListener {
             when {
-
 
                 TextUtils.isEmpty(login_email.text.toString().trim { it <= ' ' }) -> {
                     Toast.makeText(
@@ -53,26 +54,30 @@ class LoginActivity : AppCompatActivity() {
 
                             // if the registration is successful
                             if (task.isSuccessful) {
+                                FirestoreClass().getUserDetails(this@LoginActivity)
 
-                                Toast.makeText(
-                                    this@LoginActivity, "You are logged in.",
-                                    Toast.LENGTH_LONG
-                                ).show()
-                                val isFirstLogin = false
-
-                                val intent =
-                                    Intent(this@LoginActivity, MainActivity::class.java)
-                                intent.flags =
-                                    Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-                                intent.putExtra(
-                                    "user_id",
-                                    FirebaseAuth.getInstance().currentUser!!.uid
-                                )
-                                intent.putExtra("email_id", eMail)
-                                intent.putExtra("isFirstLogin", isFirstLogin)
-
-                                startActivity(intent)
-                                finish()
+//                                Toast.makeText(
+//                                    this@LoginActivity, "You are logged in.",
+//                                    Toast.LENGTH_LONG
+//                                ).show()
+//                                val isFirstLogin = false
+//
+//                                val intent =
+//                                    Intent(this@LoginActivity, MainActivity::class.java)
+//                                intent.flags =
+//                                    Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+//
+//
+//
+//                                intent.putExtra(
+//                                    "user_id",
+//                                    FirebaseAuth.getInstance().currentUser!!.uid
+//                                )
+//                                intent.putExtra("email_id", eMail)
+//                                intent.putExtra("isFirstLogin", isFirstLogin)
+//
+//                                startActivity(intent)
+//                                finish()
 
                             } else {
                                 // If the login is not successful...
@@ -94,6 +99,37 @@ class LoginActivity : AppCompatActivity() {
         }
     }
 
+    fun userLoggedInSuccess(user: User){
+        val firstName = user.firstName
+        val lastName = user.lastName
+        val phone = user.phone
+        val email = user.email
+        val isFirstLogin = false
+
+        Toast.makeText(
+            this@LoginActivity, "You are logged in.",
+            Toast.LENGTH_LONG
+        ).show()
+
+        val intent =
+            Intent(this@LoginActivity, MainActivity::class.java)
+        intent.flags =
+            Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+
+        intent.putExtra(
+            "user_id",
+            FirebaseAuth.getInstance().currentUser!!.uid
+        )
+        intent.putExtra("email_id", email)
+        intent.putExtra("firstName", firstName)
+        intent.putExtra("lastName", lastName)
+        intent.putExtra("phone", phone)
+        intent.putExtra("isFirstLogin", isFirstLogin)
+
+        startActivity(intent)
+        finish()
+    }
+
     override fun dispatchTouchEvent(ev: MotionEvent?): Boolean {
         if (currentFocus != null) {
             val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
@@ -101,5 +137,7 @@ class LoginActivity : AppCompatActivity() {
         }
         return super.dispatchTouchEvent(ev)
     }
+
+
 
 }

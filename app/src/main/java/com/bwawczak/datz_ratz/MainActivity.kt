@@ -16,8 +16,8 @@ import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.app_bar_main.*
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
-    lateinit var homeFragment: HomeFragment
-    lateinit var addSnakeFragment: AddSnakeFragment
+    private lateinit var homeFragment: HomeFragment
+    private lateinit var addSnakeFragment: AddSnakeFragment
 
 
     private lateinit var viewOrderFragment: ViewOrderFragment
@@ -47,7 +47,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         val extras = intent.extras
         val value = extras?.getBoolean("isFirstLogin")
 
-
         //sets homeFragment to default when user has logged in previously
         if (value == false) {
             homeFragment = HomeFragment()
@@ -71,11 +70,12 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         when (menuItem.itemId) {
             R.id.home -> {
+
                 homeFragment = HomeFragment()
                 supportFragmentManager
                     .beginTransaction()
                     .replace(R.id.frame_layout, homeFragment)
-                    .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                    .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN).addToBackStack(null)
                     .commit()
             }
             R.id.add_snake -> {
@@ -83,17 +83,19 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 supportFragmentManager
                     .beginTransaction()
                     .replace(R.id.frame_layout, addSnakeFragment)
-                    .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                    .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN).addToBackStack(null)
                     .commit()
             }
 
 
             R.id.view_order -> {
                 viewOrderFragment = ViewOrderFragment()
+
                 supportFragmentManager
+
                     .beginTransaction()
                     .replace(R.id.frame_layout, viewOrderFragment)
-                    .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                    .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN).addToBackStack(null)
                     .commit()
             }
 
@@ -110,16 +112,18 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     override fun onBackPressed() {
         if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
             drawerLayout.closeDrawer((GravityCompat.START))
-            //super.onBackPressed()
+
         } else {
             homeFragment = HomeFragment()
             supportFragmentManager
                 .beginTransaction()
                 .replace(R.id.frame_layout, homeFragment)
-                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN).addToBackStack(null)
                 .commit()
         }
     }
+
+
 
     //get rid of keyboard on touch
     override fun dispatchTouchEvent(ev: MotionEvent?): Boolean {
