@@ -15,7 +15,8 @@ import kotlinx.android.synthetic.main.fragment_home.view.*
 class
 HomeFragment : Fragment(), HomeFragmentRecyclerAdapter.OnItemClickListener {
 
-    lateinit var adapter : HomeFragmentRecyclerAdapter
+    lateinit var adapter: HomeFragmentRecyclerAdapter
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -24,10 +25,10 @@ HomeFragment : Fragment(), HomeFragmentRecyclerAdapter.OnItemClickListener {
 
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_home, container, false)
-        val exampleList = 30.generateDummyList()
+
 
         adapter = HomeFragmentRecyclerAdapter(arrayListOf(), this)
-        //view.recyclerView.adapter = HomeFragmentRecyclerAdapter(arrayListOf(), this)
+
         view.recyclerView.layoutManager = LinearLayoutManager(context)
         view.recyclerView.setHasFixedSize(true)
         view.recyclerView.adapter = adapter
@@ -39,25 +40,26 @@ HomeFragment : Fragment(), HomeFragmentRecyclerAdapter.OnItemClickListener {
         super.onResume()
 
         // read snakes from firestore
+        FirestoreClass().listSnakes(
+            FirestoreClass().getCurrentUserId(),
+            object : FirestoreClass.Callback {
+                override fun onSuccess(snakes: ArrayList<Snake>?) {
+                    if (snakes != null) {
+                        adapter.setItemList(snakes)
 
-        FirestoreClass().listSnakes(FirestoreClass().getCurrentUserId(), object: FirestoreClass.Callback {
-            override fun onSuccess(snakes: ArrayList<Snake>?) {
-                if (snakes != null) {
-                    adapter.setItemList(snakes)
+                    }
+                    adapter.notifyDataSetChanged()
                 }
-                adapter.notifyDataSetChanged()
-            }
-        })
+            })
     }
 
     // Handles on click event for recyclerView
     override fun onItemClick(position: Int) {
-        //Toast.makeText(context,"Item $position clicked",Toast.LENGTH_SHORT).show()
 
         val intent =
             Intent(context, AddSnakeLog::class.java)
-//        intent.flags =
-//            Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+        intent.flags =
+            Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
         intent.putExtra("index", position)
         intent.putExtra("snake", adapter.getItem(position))
 
@@ -65,18 +67,5 @@ HomeFragment : Fragment(), HomeFragmentRecyclerAdapter.OnItemClickListener {
 
     }
 
-    private fun Int.generateDummyList(): List<RecyclerViewData> {
-        val list = ArrayList<RecyclerViewData>()
-
-        for (i in 0 until this) {
-            val item = RecyclerViewData(
-                "Name $i", "Morph", "Weight", "Rodent", "date", "weight"
-                , "rodent", "date", "weight", "rodent"
-            )
-            list += item
-        }
-
-        return list
-    }
 
 }

@@ -19,21 +19,13 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     lateinit var homeFragment: HomeFragment
     lateinit var addSnakeFragment: AddSnakeFragment
 
-    //lateinit var viewPreviousFragment: ViewPreviousFragment
+
     private lateinit var viewOrderFragment: ViewOrderFragment
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
-        //get information sent from registration screen
-       // val userId = intent.getStringExtra("user_id")
-        //val emailId = intent.getStringExtra("email_id")
-//        val firstNameId = intent.getStringExtra("first_name")
-//        val lastNameId = intent.getStringExtra("last_name")
-
-
 
         setSupportActionBar(toolBar)
         val actionBar = supportActionBar
@@ -52,13 +44,27 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         nav_view.setNavigationItemSelectedListener(this)
 
-        //sets homeFragment to default
-        homeFragment = HomeFragment()
-        supportFragmentManager
-            .beginTransaction()
-            .replace(R.id.frame_layout, homeFragment)
-            .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
-            .commit()
+        val extras = intent.extras
+        val value = extras?.getBoolean("isFirstLogin")
+
+
+        //sets homeFragment to default when user has logged in previously
+        if (value == false) {
+            homeFragment = HomeFragment()
+            supportFragmentManager
+                .beginTransaction()
+                .replace(R.id.frame_layout, homeFragment)
+                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                .commit()
+            //sets addSnakeFragment to default when a new user registers.
+        } else {
+            addSnakeFragment = AddSnakeFragment()
+            supportFragmentManager
+                .beginTransaction()
+                .replace(R.id.frame_layout, addSnakeFragment)
+                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                .commit()
+        }
     }
 
     override fun onNavigationItemSelected(menuItem: MenuItem): Boolean {
@@ -81,11 +87,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                     .commit()
             }
 
-            R.id.logout_app -> {
-                FirebaseAuth.getInstance().signOut()
-                startActivity(Intent(this@MainActivity, LoginActivity::class.java))
-                finish()
-            }
 
             R.id.view_order -> {
                 viewOrderFragment = ViewOrderFragment()
@@ -95,6 +96,12 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                     .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
                     .commit()
             }
+
+            R.id.logout_app -> {
+                FirebaseAuth.getInstance().signOut()
+                startActivity(Intent(this@MainActivity, LoginActivity::class.java))
+                finish()
+            }
         }
         drawerLayout.closeDrawer(GravityCompat.START)
         return true
@@ -103,10 +110,15 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     override fun onBackPressed() {
         if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
             drawerLayout.closeDrawer((GravityCompat.START))
+            //super.onBackPressed()
         } else {
-            super.onBackPressed()
+            homeFragment = HomeFragment()
+            supportFragmentManager
+                .beginTransaction()
+                .replace(R.id.frame_layout, homeFragment)
+                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                .commit()
         }
-        super.onBackPressed()
     }
 
     //get rid of keyboard on touch

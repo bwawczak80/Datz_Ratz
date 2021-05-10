@@ -23,7 +23,7 @@ class RegisterActivity : AppCompatActivity() {
         setContentView(R.layout.activity_register)
 
         val snakes = arrayListOf<Snake>()
-        val logs = arrayListOf<LogItem>()
+        arrayListOf<LogItem>()
 
         btn_register.setOnClickListener {
             when {
@@ -87,10 +87,10 @@ class RegisterActivity : AppCompatActivity() {
 
                                 val user = User(
                                     firebaseUser.uid,
-                                    reg_first_name.text.toString().trim { it <= ' ' },
-                                    reg_last_name.text.toString().trim { it <= ' ' },
-                                    reg_email.text.toString().trim { it <= ' ' },
-                                    reg_phone.text.toString().trim { it <= ' ' },
+                                    fName,
+                                    lName,
+                                    eMail,
+                                    phone,
                                     //arrayListOf<Snake>()
                                     snakes
 
@@ -98,12 +98,6 @@ class RegisterActivity : AppCompatActivity() {
 
                                 FirestoreClass().registerUser(this, user)
 
-
-                                val intent =
-                                    Intent(this@RegisterActivity, MainActivity::class.java)
-                                intent.flags =
-                                    Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-                                finish()
                             } else {
                                 // If the registration is not successful...
                                 Toast.makeText(
@@ -125,9 +119,28 @@ class RegisterActivity : AppCompatActivity() {
         }
     }
 
-    fun userRegistrationSuccess(){
-        Toast.makeText(this@RegisterActivity, resources.getString(R.string.user_registered),
-            Toast.LENGTH_LONG).show()
+    fun userRegistrationSuccess() {
+        Toast.makeText(
+            this@RegisterActivity, resources.getString(R.string.user_registered),
+            Toast.LENGTH_LONG
+        ).show()
+
+
+        val intent =
+            Intent(this@RegisterActivity, MainActivity::class.java)
+        val eMail: String = reg_email.text.toString().trim { it <= ' ' }
+        val isFirstLogin = true
+        intent.flags =
+            Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+        intent.putExtra(
+            "user_id",
+            FirebaseAuth.getInstance().currentUser!!.uid
+        )
+        intent.putExtra("email_id", eMail)
+        intent.putExtra("isFirstLogin", isFirstLogin)
+
+        startActivity(intent)
+        finish()
     }
 
 

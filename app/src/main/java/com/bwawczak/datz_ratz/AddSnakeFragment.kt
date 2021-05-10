@@ -7,23 +7,18 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
-import android.widget.EditText
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.bwawczak.datz_ratz.firestore.FirestoreClass
 import com.bwawczak.datz_ratz.models.LogItem
 import com.bwawczak.datz_ratz.models.Snake
-import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import kotlinx.android.synthetic.main.fragment_add_snake.*
 import kotlinx.android.synthetic.main.fragment_add_snake.view.*
-import java.text.SimpleDateFormat
-import java.util.*
 
 
 class AddSnakeFragment : Fragment() {
-
 
     private lateinit var database: FirebaseDatabase
     private lateinit var reference: DatabaseReference
@@ -45,7 +40,7 @@ class AddSnakeFragment : Fragment() {
         val arrayAdapter = ArrayAdapter(requireContext(), R.layout.dropdown_item, rodentList)
         view.autoCompleteTextView.setAdapter(arrayAdapter)
 
-        var isInShed = false
+        val isInShed = false
 
         view.addBtn.setOnClickListener {
 
@@ -99,16 +94,22 @@ class AddSnakeFragment : Fragment() {
                     val snake = Snake(
                         view.nameInput.text.toString().trim { it <= ' ' },
                         view.morphInput.text.toString().trim { it <= ' ' },
-                        arrayListOf<LogItem>(snakeLogItem)
+                        arrayListOf(snakeLogItem)
                     )
 
                     //update Firebase to add snake
                     FirestoreClass().addSnake(userID, snake)
 
+                    Toast.makeText(
+                        context,
+                        "Snake added.",
+                        Toast.LENGTH_LONG
+                    ).show()
+
+                    clearTextFields()
+
                 }
             }
-
-
         }
 
         database = FirebaseDatabase.getInstance()
@@ -117,5 +118,12 @@ class AddSnakeFragment : Fragment() {
         return view
     }
 
-
+    private fun clearTextFields() {
+        nameInput.setText("")
+        weightInput.setText("")
+        morphInput.setText("")
+        dateInput.setText("")
+        dateInput.hint = ""
+        autoCompleteTextView.setText("")
+    }
 }

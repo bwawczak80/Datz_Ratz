@@ -6,13 +6,13 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
-class OrderFragmentRecyclerAdapter(private val itemList: List<RecyclerViewOrder>) :
+class OrderFragmentRecyclerAdapter(private var itemList: List<RecyclerViewOrder>) :
     RecyclerView.Adapter<OrderFragmentRecyclerAdapter.OrderViewHolder>() {
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
-    ): OrderFragmentRecyclerAdapter.OrderViewHolder {
+    ): OrderViewHolder {
         val itemView =
             LayoutInflater.from(parent.context).inflate(R.layout.order_fragment_item, parent, false)
 
@@ -22,7 +22,7 @@ class OrderFragmentRecyclerAdapter(private val itemList: List<RecyclerViewOrder>
     override fun getItemCount() = itemList.size
 
     override fun onBindViewHolder(
-        holder: OrderFragmentRecyclerAdapter.OrderViewHolder,
+        holder: OrderViewHolder,
         position: Int
     ) {
         val currentItem = itemList[position]
@@ -36,5 +36,10 @@ class OrderFragmentRecyclerAdapter(private val itemList: List<RecyclerViewOrder>
         val qtyTxt: TextView = itemView.findViewById(R.id.txt_qty)
         val rodentTxt: TextView = itemView.findViewById(R.id.txt_rodent)
         val priceTxt: TextView = itemView.findViewById(R.id.txt_price)
+    }
+
+    fun setItemList(items: List<RecyclerViewOrder>) {
+        itemList = items
+
     }
 }

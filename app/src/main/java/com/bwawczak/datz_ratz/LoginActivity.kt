@@ -16,8 +16,7 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
-        login_email.setText("brian@user.com")
-        login_password.setText("password")
+
         txt_register.setOnClickListener {
 
             startActivity(Intent(this@LoginActivity, RegisterActivity::class.java))
@@ -55,11 +54,11 @@ class LoginActivity : AppCompatActivity() {
                             // if the registration is successful
                             if (task.isSuccessful) {
 
-
                                 Toast.makeText(
                                     this@LoginActivity, "You are logged in.",
                                     Toast.LENGTH_LONG
                                 ).show()
+                                val isFirstLogin = false
 
                                 val intent =
                                     Intent(this@LoginActivity, MainActivity::class.java)
@@ -70,9 +69,11 @@ class LoginActivity : AppCompatActivity() {
                                     FirebaseAuth.getInstance().currentUser!!.uid
                                 )
                                 intent.putExtra("email_id", eMail)
+                                intent.putExtra("isFirstLogin", isFirstLogin)
 
                                 startActivity(intent)
                                 finish()
+
                             } else {
                                 // If the login is not successful...
                                 Toast.makeText(

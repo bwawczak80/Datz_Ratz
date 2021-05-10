@@ -18,13 +18,13 @@ import java.util.*
 
 class AddSnakeLog : AppCompatActivity() {
     @SuppressLint("SimpleDateFormat")
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_snake_log)
 
         val snake = intent.getSerializableExtra("snake") as Snake
         val position = intent.getIntExtra("index", 0)
-
 
         //create arrayAdapter for custom drop down menu
         val rodentList = resources.getStringArray(R.array.rodents)
@@ -69,12 +69,12 @@ class AddSnakeLog : AppCompatActivity() {
                         isInShed
                     )
 
-                    //update user in Firebase
                     snake.logs.add(logs)
 
 
                     FirestoreClass().updateLogItem(FirestoreClass().getCurrentUserId(),
                         position, snake, object : FirestoreClass.Callback {
+
                             override fun onSuccess(snakes: ArrayList<Snake>?) {
                                 onBackPressed()
                             }
@@ -93,6 +93,5 @@ class AddSnakeLog : AppCompatActivity() {
         }
         return super.dispatchTouchEvent(ev)
     }
-
 
 }

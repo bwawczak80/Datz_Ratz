@@ -2,6 +2,7 @@ package com.bwawczak.datz_ratz.firestore
 
 import android.util.Log
 import com.bwawczak.datz_ratz.RegisterActivity
+import com.bwawczak.datz_ratz.models.LogItem
 import com.bwawczak.datz_ratz.models.Snake
 import com.bwawczak.datz_ratz.models.User
 import com.google.firebase.auth.FirebaseAuth
@@ -14,6 +15,9 @@ class FirestoreClass {
         fun onSuccess(snakes: ArrayList<Snake>?)
     }
 
+    interface RecentLogItemCallback {
+        fun onSuccess(logItems: ArrayList<LogItem>)
+    }
 
     private val mFireStore = FirebaseFirestore.getInstance()
 
@@ -21,7 +25,7 @@ class FirestoreClass {
 
         //this will create the collection "users" the first time it is run.
         mFireStore.collection("users")
-        //Document ID for users fields.
+            //Document ID for users fields.
             .document(userInfo.id)
             .set(userInfo, SetOptions.merge())
             .addOnSuccessListener {
@@ -30,7 +34,7 @@ class FirestoreClass {
 
             }
             .addOnFailureListener { e ->
-                Log.e(activity.javaClass.simpleName,"Error while registering the user.",e)
+                Log.e(activity.javaClass.simpleName, "Error while registering the user.", e)
             }
     }
 
@@ -44,7 +48,7 @@ class FirestoreClass {
                     val user = documentSnapshot.toObject(User::class.java)
                     Log.d("FireStore", "user = $user")
 
-                    val snakes : ArrayList<Snake> = ArrayList()// user?.snakes?.add(snake)
+                    val snakes: ArrayList<Snake> = ArrayList()// user?.snakes?.add(snake)
                     //var snakes = user?.snakes?.add(snake)
                     user?.snakes?.let { snakes.addAll(it) }
                     snakes.add(snake)
@@ -53,10 +57,12 @@ class FirestoreClass {
 
                     mFireStore.collection("users").document(userID)
 
-                        //.update("snakes", FieldValue.arrayUnion(snakes))
-                        .update(mapOf(
-                            "snakes" to snakes
-                        ))
+                        // update("snakes"
+                        .update(
+                            mapOf(
+                                "snakes" to snakes
+                            )
+                        )
                         .addOnSuccessListener {
                             Log.d("FireStore", "update success =========")
                         }
@@ -65,31 +71,32 @@ class FirestoreClass {
 
     }
 
-    fun updateLogItem(userID: String, index: Int , snake: Snake, listener : Callback) {
+    fun updateLogItem(userID: String, index: Int, snake: Snake, listener: Callback) {
 
         mFireStore.collection("users").document(userID)
             .get()
             .addOnSuccessListener { documentSnapshot ->
                 if (documentSnapshot.exists()) {
-                    //val user = documentSnapshot.toObject<User>()
                     val user = documentSnapshot.toObject(User::class.java)
                     Log.d("FireStore", "user = $user")
 
-                    val snakes : ArrayList<Snake> = ArrayList()// user?.snakes?.add(snake)
-                    //var snakes = user?.snakes?.add(snake)
+                    val snakes: ArrayList<Snake> = ArrayList()
+
                     user?.snakes?.let { snakes.addAll(it) }
 
                     snakes[index] = snake
-                    //snakes.set(index, snake)
+
 
                     Log.d("FireStore", "snakes = $snakes")
 
                     mFireStore.collection("users").document(userID)
 
-                        //.update("snakes", FieldValue.arrayUnion(snakes))
-                        .update(mapOf(
-                            "snakes" to snakes
-                        ))
+
+                        .update(
+                            mapOf(
+                                "snakes" to snakes
+                            )
+                        )
                         .addOnSuccessListener {
                             Log.d("FireStore", "update success =========")
                             listener.onSuccess(null)
@@ -100,8 +107,7 @@ class FirestoreClass {
     }
 
 
-
-    fun listSnakes(userID: String, listener : Callback) {
+    fun listSnakes(userID: String, listener: Callback) {
 
         mFireStore.collection("users").document(userID)
             .get()
@@ -116,9 +122,33 @@ class FirestoreClass {
 
     }
 
-// get CurrentUser from Authentication module
+
+    fun listRecentLogItems(userID: String, listener: RecentLogItemCallback) {
+
+        mFireStore.collection("users").document(userID)
+            .get()
+            .addOnSuccessListener { documentSnapshot ->
+                if (documentSnapshot.exists()) {
+
+                    val user = documentSnapshot.toObject(User::class.java)
+
+                    val arrayRecentLogs: ArrayList<LogItem> = arrayListOf()
+
+                    for (snake: Snake in user?.snakes!!) {
+                        val recentLogItem = snake.logs.last()
+                        arrayRecentLogs.add(recentLogItem)
+                    }
+                    listener.onSuccess(arrayRecentLogs)
+                }
+            }
+
+    }
+
+
+    // get CurrentUser from Authentication module
     fun getCurrentUserId(): String {
-        //gets and instance of the currentUser
+
+        //gets an instance of the currentUser
         val currentUser = FirebaseAuth.getInstance().currentUser
 
         var currentUserID = ""
