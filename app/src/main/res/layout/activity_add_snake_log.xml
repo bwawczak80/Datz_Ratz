@@ -1,11 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/datz_black"
     android:orientation="vertical"
     tools:context=".AddSnakeLog">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
     <LinearLayout
 
@@ -126,6 +130,7 @@
         android:layout_marginTop="50dp"
         android:layout_marginBottom="50dp"
         android:text="@string/log" />
+    </RelativeLayout>
 
 
-</RelativeLayout>
+</ScrollView>
