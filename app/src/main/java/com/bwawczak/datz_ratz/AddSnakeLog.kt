@@ -12,6 +12,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.bwawczak.datz_ratz.firestore.FirestoreClass
 import com.bwawczak.datz_ratz.models.LogItem
 import com.bwawczak.datz_ratz.models.Snake
+import com.bwawczak.datz_ratz.utils.Constants
 import kotlinx.android.synthetic.main.activity_add_snake_log.*
 import java.text.SimpleDateFormat
 import java.util.*
@@ -60,10 +61,11 @@ class AddSnakeLog : AppCompatActivity() {
                     val date = simpleDateFormat.format(Date())
                     val isInShed: Boolean = checkBox.isChecked
                     println(date)
+                    println("---------------------$isInShed------------------------------------")
 
 
                     val logs = LogItem(
-                        weightLogInput.text.toString().trim { it <= ' ' },
+                        weightLogInput.text.toString().trim { it <= ' ' } + Constants.GRAMS,
                         date,
                         autoCompleteTextViewLog.text.toString(),
                         isInShed

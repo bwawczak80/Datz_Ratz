@@ -139,7 +139,14 @@ class FirestoreClass {
 
                     for (snake: Snake in user?.snakes!!) {
                         val recentLogItem = snake.logs.last()
-                        arrayRecentLogs.add(recentLogItem)
+                        // if snake is not in shed, add to arrayRecentLogs
+                        if (!recentLogItem.isInShed) {
+
+                            arrayRecentLogs.add(recentLogItem)
+
+                        }
+
+
                     }
 
                     listener.onSuccess(arrayRecentLogs, user)
@@ -159,7 +166,7 @@ class FirestoreClass {
                 // Here we get the document snapshot which is converted into the User Data model object
                 val user = document.toObject(User::class.java)!!
                 //pass the result to the Login Activity
-                when(activity) {
+                when (activity) {
                     is LoginActivity -> {
                         //Call a function to transfer results
                         activity.userLoggedInSuccess(user)

@@ -10,6 +10,9 @@ import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
 import androidx.fragment.app.FragmentTransaction
+import com.bwawczak.datz_ratz.fragments.AddSnakeFragment
+import com.bwawczak.datz_ratz.fragments.HomeFragment
+import com.bwawczak.datz_ratz.fragments.ViewOrderFragment
 import com.google.android.material.navigation.NavigationView
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_main.*
@@ -18,15 +21,11 @@ import kotlinx.android.synthetic.main.app_bar_main.*
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
     private lateinit var homeFragment: HomeFragment
     private lateinit var addSnakeFragment: AddSnakeFragment
-
-
     private lateinit var viewOrderFragment: ViewOrderFragment
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
         setSupportActionBar(toolBar)
         val actionBar = supportActionBar
         actionBar?.title = "Datz Ratz"
@@ -57,7 +56,8 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 .commit()
             //sets addSnakeFragment to default when a new user registers.
         } else {
-            addSnakeFragment = AddSnakeFragment()
+            addSnakeFragment =
+                AddSnakeFragment()
             supportFragmentManager
                 .beginTransaction()
                 .replace(R.id.frame_layout, addSnakeFragment)
@@ -79,7 +79,8 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                     .commit()
             }
             R.id.add_snake -> {
-                addSnakeFragment = AddSnakeFragment()
+                addSnakeFragment =
+                    AddSnakeFragment()
                 supportFragmentManager
                     .beginTransaction()
                     .replace(R.id.frame_layout, addSnakeFragment)
@@ -89,7 +90,8 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
 
             R.id.view_order -> {
-                viewOrderFragment = ViewOrderFragment()
+                viewOrderFragment =
+                    ViewOrderFragment()
 
                 supportFragmentManager
 
@@ -122,7 +124,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 .commit()
         }
     }
-
 
 
     //get rid of keyboard on touch

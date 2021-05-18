@@ -1,4 +1,4 @@
-package com.bwawczak.datz_ratz
+package com.bwawczak.datz_ratz.fragments
 
 import android.content.Intent
 import android.os.Bundle
@@ -7,13 +7,17 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.bwawczak.datz_ratz.AddSnakeLog
+import com.bwawczak.datz_ratz.HomeFragmentRecyclerAdapter
+import com.bwawczak.datz_ratz.R
 import com.bwawczak.datz_ratz.firestore.FirestoreClass
 import com.bwawczak.datz_ratz.models.Snake
 import kotlinx.android.synthetic.main.fragment_home.view.*
 
 
 class
-HomeFragment : Fragment(), HomeFragmentRecyclerAdapter.OnItemClickListener {
+HomeFragment : Fragment(),
+    HomeFragmentRecyclerAdapter.OnItemClickListener {
 
     lateinit var adapter: HomeFragmentRecyclerAdapter
 
@@ -27,7 +31,10 @@ HomeFragment : Fragment(), HomeFragmentRecyclerAdapter.OnItemClickListener {
         val view = inflater.inflate(R.layout.fragment_home, container, false)
 
 
-        adapter = HomeFragmentRecyclerAdapter(arrayListOf(), this)
+        adapter = HomeFragmentRecyclerAdapter(
+            arrayListOf(),
+            this
+        )
 
         view.recyclerView.layoutManager = LinearLayoutManager(context)
         view.recyclerView.setHasFixedSize(true)

@@ -6,5 +6,5 @@ class LogItem(
     val weight: String = "",
     val mealDate: String = "",
     val lastMeal: String = "",
-    val isInShed: Boolean = false
+    var isInShed: Boolean = true
 ) : Serializable {}

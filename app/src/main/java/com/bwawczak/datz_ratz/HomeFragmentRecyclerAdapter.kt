@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bwawczak.datz_ratz.models.Snake
+import com.bwawczak.datz_ratz.utils.Constants
 import kotlinx.android.synthetic.main.home_fragment_item.view.*
 
 class HomeFragmentRecyclerAdapter(

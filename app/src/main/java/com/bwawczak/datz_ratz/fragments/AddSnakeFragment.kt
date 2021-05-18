@@ -1,6 +1,8 @@
-package com.bwawczak.datz_ratz
+package com.bwawczak.datz_ratz.fragments
 
 import android.annotation.SuppressLint
+import android.app.DatePickerDialog
+import android.app.Dialog
 import android.os.Bundle
 import android.text.TextUtils
 import android.view.LayoutInflater
@@ -9,9 +11,11 @@ import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import com.bwawczak.datz_ratz.R
 import com.bwawczak.datz_ratz.firestore.FirestoreClass
 import com.bwawczak.datz_ratz.models.LogItem
 import com.bwawczak.datz_ratz.models.Snake
+import com.bwawczak.datz_ratz.utils.Constants
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import kotlinx.android.synthetic.main.fragment_add_snake.*
@@ -37,8 +41,10 @@ class AddSnakeFragment : Fragment() {
 
         //create arrayAdapter for custom drop down menu
         val rodentList = resources.getStringArray(R.array.rodents)
-        val arrayAdapter = ArrayAdapter(requireContext(), R.layout.dropdown_item, rodentList)
+        val arrayAdapter = ArrayAdapter(requireContext(),
+            R.layout.dropdown_item, rodentList)
         view.autoCompleteTextView.setAdapter(arrayAdapter)
+
 
         val isInShed = false
 
@@ -85,9 +91,10 @@ class AddSnakeFragment : Fragment() {
                 else -> {
 
                     val snakeLogItem = LogItem(
-                        view.weightInput.text.toString().trim { it <= ' ' },
+                        view.weightInput.text.toString().trim { it <= ' ' } + Constants.GRAMS,
                         view.dateInput.text.toString().trim { it <= ' ' },
                         view.autoCompleteTextView.text.toString(),
+
                         isInShed
                     )
 
@@ -116,6 +123,10 @@ class AddSnakeFragment : Fragment() {
         reference = database.getReference("users")
 
         return view
+    }
+
+    fun openDatePickerDialog() {
+
     }
 
     private fun clearTextFields() {

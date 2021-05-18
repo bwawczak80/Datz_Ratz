@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:background="@color/datz_black"
     android:orientation="vertical"
-    tools:context=".AddSnakeFragment">
+    tools:context=".fragments.AddSnakeFragment">
 
     <TextView
         android:id="@+id/addSnakeTitle"
@@ -117,6 +117,7 @@
         android:textSize="15sp"
         tools:ignore="SmallSp" />
 
+
     <EditText
         android:id="@+id/dateInput"
         android:layout_width="match_parent"
@@ -131,7 +132,14 @@
         android:textSize="18sp"
         android:hint="@string/_5_4_2021"
         android:textColorHint="@color/datz_grey"
-        tools:ignore="LabelFor" />
+        tools:ignore="LabelFor"
+
+
+        android:clickable="false"
+        android:cursorVisible="false"
+        android:focusable="false"
+        android:focusableInTouchMode="false"
+        />
 
     <TextView
         android:id="@+id/rodentTag"
