@@ -136,14 +136,14 @@
         android:textSize="18sp"
         android:hint="@string/_5_4_2021"
         android:textColorHint="@color/datz_grey"
-        tools:ignore="LabelFor"
+        tools:ignore="LabelFor"/>
 
 
-        android:clickable="false"
+        <!--android:clickable="false"
         android:cursorVisible="false"
         android:focusable="false"
-        android:focusableInTouchMode="false"
-        />
+        android:focusableInTouchMode="false"-->
+
 
     <TextView
         android:id="@+id/rodentTag"
@@ -165,7 +165,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/rodentTag"
-        android:layout_alignParentBottom="true"
+        android:background="@color/datz_black"
         android:layout_marginStart="20dp"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="10dp">
@@ -179,8 +179,6 @@
             android:textColor="@color/white"
             android:textSize="18sp"
             tools:ignore="LabelFor" />
-
-
     </com.google.android.material.textfield.TextInputLayout>
 
     <Button
@@ -192,6 +190,7 @@
         android:layout_marginTop="100dp"
         android:layout_marginBottom="50dp"
         android:text="@string/add_snake" />
+
     </RelativeLayout>
 
 </ScrollView>

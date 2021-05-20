@@ -67,7 +67,7 @@
         android:layout_marginEnd="10dp"
         android:importantForAutofill="no"
         android:inputType="number"
-        android:text="@string/_0"
+
         android:textColor="@color/white"
         android:textSize="20sp"
         tools:ignore="LabelFor" />
@@ -90,10 +90,10 @@
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/dropdown"
         style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.ExposedDropdownMenu"
+        android:background="@color/datz_black"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/rodentLogTag"
-        android:layout_alignParentBottom="true"
         android:layout_marginStart="20dp"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="10dp">
@@ -104,7 +104,7 @@
             android:layout_height="wrap_content"
             android:backgroundTint="@color/datz_black"
             android:inputType="none"
-            android:textColor="@color/datz_grey"
+            android:textColor="@color/white"
             android:textSize="20sp"
             tools:ignore="LabelFor" />
 

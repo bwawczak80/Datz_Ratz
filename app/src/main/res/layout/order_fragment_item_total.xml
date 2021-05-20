@@ -10,31 +10,19 @@
         android:layout_height="match_parent"
         android:background="@color/datz_black">
 
-
         <TextView
-            android:id="@+id/txt_qty"
+            android:id="@+id/order_total_label"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_weight=".8"
             android:background="@color/datz_black"
             android:padding="8dp"
-            android:text="@string/_1"
-            android:layout_weight=".2"
+            android:text="@string/order_total"
             android:textColor="@color/white"
             android:textSize="18sp" />
 
         <TextView
-            android:id="@+id/txt_rodent"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight=".6"
-            android:background="@color/datz_black"
-            android:padding="8dp"
-            android:text="@string/small_asf"
-            android:textColor="@color/white"
-            android:textSize="18sp" />
-
-        <TextView
-            android:id="@+id/txt_price"
+            android:id="@+id/txt_order_total"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight=".2"

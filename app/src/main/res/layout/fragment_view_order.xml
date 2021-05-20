@@ -4,98 +4,125 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/datz_black"
-    tools:context=".fragments.ViewOrderFragment"
-    >
+    tools:context=".fragments.ViewOrderFragment">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/orderRecyclerView"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_marginTop="60dp"
-        android:clipToPadding="false"
-        android:padding="4dp"
-        android:layout_weight=".50"
-        tools:listitem="@layout/order_fragment_item" />
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:orientation="vertical"
-        android:layout_weight=".50">
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/orderRecyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="60dp"
+            android:layout_weight=".40"
+            android:clipToPadding="false"
+            android:padding="4dp"
+            tools:listitem="@layout/order_fragment_item" />
 
 
-    <TextView
-        android:id="@+id/puDayTag"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="10dp"
-        android:text="@string/pickup_day"
-        android:textColor="@color/datz_grey"
-        android:textSize="15sp"
-        tools:ignore="SmallSp"
-        />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight=".60"
+            android:orientation="vertical">
 
-    <EditText
-        android:id="@+id/puDayInput"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="10dp"
-        android:clickable="true"
-        android:focusable="true"
-        android:importantForAutofill="no"
-        android:inputType="text"
-        android:textColor="@color/white"
-        android:textSize="18sp"
-        android:text="@string/today"
-        tools:ignore="LabelFor" />
-    <TextView
-        android:id="@+id/puTimeTag"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="10dp"
-        android:text="@string/pick_up_time"
-        android:textColor="@color/datz_grey"
-        android:textSize="15sp"
-        tools:ignore="SmallSp"
-        />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
 
-    <EditText
-        android:id="@+id/puTimeInput"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="10dp"
-        android:clickable="true"
-        android:focusable="true"
-        android:importantForAutofill="no"
-        android:inputType="text"
-        android:textColor="@color/white"
-        android:textSize="18sp"
-        tools:ignore="LabelFor"
-        android:hint="@string/_12_00_1_00pm"
-        android:textColorHint="@color/datz_grey"
-        />
+                <TextView
+                    android:id="@+id/total_tag"
+                    android:text="@string/order_total"
+                    android:layout_width="0dp"
+                    android:layout_weight=".60"
+                    android:layout_height="match_parent"
+                    android:textSize="18sp"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:textColor="@color/white"/>
+                <TextView
+                    android:id="@+id/display_total"
+                    android:layout_width="0dp"
+                    android:layout_weight=".4"
+                    android:layout_height="wrap_content"
+                    android:textSize="18sp"
+                    android:textColor="@color/white"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="10dp"/>
+
+            </LinearLayout>
 
 
-    <Button
-        android:id="@+id/btn_send"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="30dp"
-        android:text="@string/send_order" />
-    </LinearLayout>
+            <TextView
+                android:id="@+id/puDayTag"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                android:text="@string/pickup_day"
+                android:textColor="@color/datz_grey"
+                android:textSize="15sp"
+                tools:ignore="SmallSp" />
+
+            <EditText
+                android:id="@+id/puDayInput"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:importantForAutofill="no"
+                android:inputType="text"
+                android:text="@string/today"
+                android:textColor="@color/white"
+                android:textSize="18sp"
+                tools:ignore="LabelFor" />
+
+            <TextView
+                android:id="@+id/puTimeTag"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                android:text="@string/pick_up_time"
+                android:textColor="@color/datz_grey"
+                android:textSize="15sp"
+                tools:ignore="SmallSp" />
+
+            <EditText
+                android:id="@+id/puTimeInput"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:hint="@string/_12_00_1_00pm"
+                android:importantForAutofill="no"
+                android:inputType="text"
+                android:textColor="@color/white"
+                android:textColorHint="@color/datz_grey"
+                android:textSize="18sp"
+                tools:ignore="LabelFor" />
+
+
+            <Button
+                android:id="@+id/btn_send"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="30dp"
+                android:text="@string/send_order" />
+        </LinearLayout>
 
     </LinearLayout>
 </ScrollView>

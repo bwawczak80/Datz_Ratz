@@ -20,6 +20,7 @@ import com.bwawczak.datz_ratz.models.User
 import com.bwawczak.datz_ratz.utils.Constants
 import kotlinx.android.synthetic.main.fragment_view_order.*
 import kotlinx.android.synthetic.main.fragment_view_order.view.*
+import java.text.NumberFormat
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -27,6 +28,28 @@ import kotlin.collections.ArrayList
 class ViewOrderFragment : Fragment() {
 
     lateinit var adapter: OrderFragmentRecyclerAdapter
+
+    private val rodentPrices = mapOf(
+        "Pinky Mouse" to .50,
+        "Fuzzy Mouse" to .75,
+        "Hopper Mouse" to 1.00,
+        "Small Mouse" to 1.25,
+        "Medium Mouse" to 1.50,
+        "Large Mouse" to 2.00,
+        "Pinky ASF" to .50,
+        "Hopper ASF" to 1.00,
+        "Small ASF" to 1.75,
+        "Medium ASF" to 2.50,
+        "Large ASF" to 4.00,
+        "Jumbo ASF" to 6.00,
+        "Pinky Rat" to 1.00,
+        "Weaned Rat" to 2.00,
+        "Small Rat" to 3.00,
+        "Medium Rat" to 4.00,
+        "Large Rat" to 5.00,
+        "Jumbo Rat" to 7.00,
+        "None" to 0
+    )
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -53,31 +76,36 @@ class ViewOrderFragment : Fragment() {
                 override fun onSuccess(logItems: ArrayList<LogItem>, user: User) {
                     Log.d("Firestore", "size = " + logItems.size)
 
-
+                    // initialize empty ArrayList()
                     val mealList: MutableList<String> = ArrayList()
-                    val totalPrice = calculateTotals(mealList)
-                    println("----------------$totalPrice----------------")
-
+                    //get size of Firestore list
                     var x = logItems.size
-                    while (x != 0) {
 
+                    // add logItems to mealList
+                    while (x != 0) {
                         mealList.add(logItems[x - 1].lastMeal)
                         x--
                     }
 
                     val list = ArrayList<RecyclerViewOrder>()
 
+                    //get totalPrice of order
+                    val totalPrice = calculateTotals(mealList)
+                    display_total.text = ("$$totalPrice").toString()
 
 
 
                     for (i in mealList.distinct()) {
+                        val itemPrice = rodentPrices[i] as Double
+                        //convert to currency format
+                        val itemPriceString = NumberFormat.getCurrencyInstance(Locale("en", "US")).format(itemPrice)
 
                         val item =
                             RecyclerViewOrder(
                                 Collections.frequency(
                                     mealList,
                                     i
-                                ).toString(), i, " "
+                                ).toString(), i, itemPriceString
                             )
                         list += item
 
@@ -159,44 +187,35 @@ class ViewOrderFragment : Fragment() {
     }
 
 
-    private fun calculateTotals(mealList: MutableList<String>): Int {
+    private fun calculateTotals(mealList: MutableList<String>): Double {
 
-        for (item in mealList.distinct()) {
-            println(item + ": " + Collections.frequency(mealList, item))
-        }
+//        val rodentPrices = mapOf(
+//            "Pinky Mouse" to .50,
+//            "Fuzzy Mouse" to .75,
+//            "Hopper Mouse" to 1.00,
+//            "Small Mouse" to 1.25,
+//            "Medium Mouse" to 1.50,
+//            "Large Mouse" to 2.00,
+//            "Pinky ASF" to .50,
+//            "Hopper ASF" to 1.00,
+//            "Small ASF" to 1.75,
+//            "Medium ASF" to 2.50,
+//            "Large ASF" to 4.00,
+//            "Jumbo ASF" to 6.00,
+//            "Pinky Rat" to 1.00,
+//            "Weaned Rat" to 2.00,
+//            "Small Rat" to 3.00,
+//            "Medium Rat" to 4.00,
+//            "Large Rat" to 5.00,
+//            "Jumbo Rat" to 7.00,
+//            "None" to 0
+//        )
+        var total = 0.0
 
-
-
-        val rodentPrices = mapOf(
-            "Pinky Mouse" to .50,
-            "Fuzzy Mouse" to .75,
-            "Hopper Mouse" to 1.00,
-            "Small Mouse" to 1.25,
-            "Medium Mouse" to 1.50,
-            "Large Mouse" to 2.00,
-            "Pinky ASF" to .50,
-            "Hopper ASF" to 1.00,
-            "Small ASF" to 1.75,
-            "Medium ASF" to 2.50,
-            "Large ASF" to 4.00,
-            "Jumbo ASF" to 6.00,
-            "Pinky Rat" to 1.00,
-            "Weaned Rat" to 2.00,
-            "Small Rat" to 3.00,
-            "Medium Rat" to 4.00,
-            "Large Rat" to 5.00,
-            "Jumbo Rat" to 7.00,
-            "None" to 0
-        )
-        var total = 0
         for (i in mealList){
-            if (rodentPrices.containsKey(i))
-                total += rodentPrices[i] as Int
+            //println(rodentPrices[i])
+            total += rodentPrices[i] as Double
         }
-
-        println(total)
-
-
 
         return total
     }
