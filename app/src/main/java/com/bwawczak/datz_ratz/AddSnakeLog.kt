@@ -60,9 +60,6 @@ class AddSnakeLog : AppCompatActivity() {
                     val simpleDateFormat = SimpleDateFormat(datePattern)
                     val date = simpleDateFormat.format(Date())
                     val isInShed: Boolean = checkBox.isChecked
-                    println(date)
-                    println("---------------------$isInShed------------------------------------")
-
 
                     val logs = LogItem(
                         weightLogInput.text.toString().trim { it <= ' ' } + Constants.GRAMS,

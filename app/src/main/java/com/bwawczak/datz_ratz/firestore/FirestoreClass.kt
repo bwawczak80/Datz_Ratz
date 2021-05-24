@@ -47,12 +47,11 @@ class FirestoreClass {
             .get()
             .addOnSuccessListener { documentSnapshot ->
                 if (documentSnapshot.exists()) {
-                    //val user = documentSnapshot.toObject<User>()
                     val user = documentSnapshot.toObject(User::class.java)
                     Log.d("FireStore", "user = $user")
 
-                    val snakes: ArrayList<Snake> = ArrayList()// user?.snakes?.add(snake)
-                    //var snakes = user?.snakes?.add(snake)
+                    val snakes: ArrayList<Snake> = ArrayList()
+
                     user?.snakes?.let { snakes.addAll(it) }
                     snakes.add(snake)
 
@@ -60,7 +59,7 @@ class FirestoreClass {
 
                     mFireStore.collection(Constants.USERS).document(userID)
 
-                        // update("snakes"
+                        // update "snakes"
                         .update(
                             mapOf(
                                 "snakes" to snakes
@@ -145,8 +144,6 @@ class FirestoreClass {
                             arrayRecentLogs.add(recentLogItem)
 
                         }
-
-
                     }
 
                     listener.onSuccess(arrayRecentLogs, user)

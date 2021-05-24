@@ -91,9 +91,8 @@ class ViewOrderFragment : Fragment() {
 
                     //get totalPrice of order
                     val totalPrice = calculateTotals(mealList)
-                    display_total.text = ("$$totalPrice").toString()
-
-
+                    val formattedTotal = NumberFormat.getCurrencyInstance(Locale("en", "US")).format(totalPrice)
+                    display_total.text = formattedTotal
 
                     for (i in mealList.distinct()) {
                         val itemPrice = rodentPrices[i] as Double
@@ -132,7 +131,6 @@ class ViewOrderFragment : Fragment() {
                             else -> {
                                 val puDay = puDayInput.text.toString().trim { it <= ' ' }
                                 val puTime = puTimeInput.text.toString().trim { it <= ' ' }
-                                //pu = arrayOf(puDay,puTime)
                                 val userFirst = user.firstName
                                 val userLast = user.lastName
                                 val userName = "$userFirst $userLast"
@@ -153,11 +151,7 @@ class ViewOrderFragment : Fragment() {
                                 message.appendln(userPhone)
                                 message.appendln(" ")
                                 message.appendln("For pickup $puDay at $puTime")
-
-
                                 val completeMsg = message.toString()
-
-
                                 sendEmail(completeMsg)
 
                             }
@@ -189,34 +183,10 @@ class ViewOrderFragment : Fragment() {
 
     private fun calculateTotals(mealList: MutableList<String>): Double {
 
-//        val rodentPrices = mapOf(
-//            "Pinky Mouse" to .50,
-//            "Fuzzy Mouse" to .75,
-//            "Hopper Mouse" to 1.00,
-//            "Small Mouse" to 1.25,
-//            "Medium Mouse" to 1.50,
-//            "Large Mouse" to 2.00,
-//            "Pinky ASF" to .50,
-//            "Hopper ASF" to 1.00,
-//            "Small ASF" to 1.75,
-//            "Medium ASF" to 2.50,
-//            "Large ASF" to 4.00,
-//            "Jumbo ASF" to 6.00,
-//            "Pinky Rat" to 1.00,
-//            "Weaned Rat" to 2.00,
-//            "Small Rat" to 3.00,
-//            "Medium Rat" to 4.00,
-//            "Large Rat" to 5.00,
-//            "Jumbo Rat" to 7.00,
-//            "None" to 0
-//        )
         var total = 0.0
-
         for (i in mealList){
-            //println(rodentPrices[i])
             total += rodentPrices[i] as Double
         }
-
         return total
     }
 

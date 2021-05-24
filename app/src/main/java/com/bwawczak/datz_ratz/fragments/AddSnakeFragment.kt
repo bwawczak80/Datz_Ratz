@@ -125,9 +125,6 @@ class AddSnakeFragment : Fragment() {
         return view
     }
 
-    fun openDatePickerDialog() {
-
-    }
 
     private fun clearTextFields() {
         nameInput.setText("")

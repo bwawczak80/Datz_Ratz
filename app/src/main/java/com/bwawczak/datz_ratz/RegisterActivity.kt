@@ -91,7 +91,6 @@ class RegisterActivity : AppCompatActivity() {
                                     lName,
                                     eMail,
                                     phone,
-                                    //arrayListOf<Snake>()
                                     snakes
 
                                 )

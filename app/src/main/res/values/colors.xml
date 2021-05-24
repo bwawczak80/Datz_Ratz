@@ -13,4 +13,5 @@
     <color name="datz_red">#F24452</color>
     <color name="datz_grey">#7E7E7E</color>
     <color name="datz_blue">#33A69A</color>
+    <color name="highlight_black">#242424</color>
 </resources>

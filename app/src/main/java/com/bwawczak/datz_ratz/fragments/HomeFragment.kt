@@ -65,8 +65,7 @@ HomeFragment : Fragment(),
 
         val intent =
             Intent(context, AddSnakeLog::class.java)
-//        intent.flags =
-//            Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+
         intent.putExtra("index", position)
         intent.putExtra("snake", adapter.getItem(position))
 

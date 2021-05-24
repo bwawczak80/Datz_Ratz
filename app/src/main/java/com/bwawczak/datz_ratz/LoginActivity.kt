@@ -56,29 +56,6 @@ class LoginActivity : AppCompatActivity() {
                             if (task.isSuccessful) {
                                 FirestoreClass().getUserDetails(this@LoginActivity)
 
-//                                Toast.makeText(
-//                                    this@LoginActivity, "You are logged in.",
-//                                    Toast.LENGTH_LONG
-//                                ).show()
-//                                val isFirstLogin = false
-//
-//                                val intent =
-//                                    Intent(this@LoginActivity, MainActivity::class.java)
-//                                intent.flags =
-//                                    Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-//
-//
-//
-//                                intent.putExtra(
-//                                    "user_id",
-//                                    FirebaseAuth.getInstance().currentUser!!.uid
-//                                )
-//                                intent.putExtra("email_id", eMail)
-//                                intent.putExtra("isFirstLogin", isFirstLogin)
-//
-//                                startActivity(intent)
-//                                finish()
-
                             } else {
                                 // If the login is not successful...
                                 Toast.makeText(
@@ -99,7 +76,7 @@ class LoginActivity : AppCompatActivity() {
         }
     }
 
-    fun userLoggedInSuccess(user: User){
+    fun userLoggedInSuccess(user: User) {
         val firstName = user.firstName
         val lastName = user.lastName
         val phone = user.phone
@@ -137,7 +114,5 @@ class LoginActivity : AppCompatActivity() {
         }
         return super.dispatchTouchEvent(ev)
     }
-
-
 
 }
