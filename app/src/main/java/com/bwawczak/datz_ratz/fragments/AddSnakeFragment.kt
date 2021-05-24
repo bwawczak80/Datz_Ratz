@@ -1,8 +1,6 @@
 package com.bwawczak.datz_ratz.fragments
 
 import android.annotation.SuppressLint
-import android.app.DatePickerDialog
-import android.app.Dialog
 import android.os.Bundle
 import android.text.TextUtils
 import android.view.LayoutInflater

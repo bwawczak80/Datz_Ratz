@@ -11,5 +11,5 @@ data class User(
     val snakes: ArrayList<Snake> = arrayListOf()
 
 
-) : Serializable {}
+) : Serializable
 
