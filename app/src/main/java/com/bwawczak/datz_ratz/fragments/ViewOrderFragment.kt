@@ -1,5 +1,7 @@
 package com.bwawczak.datz_ratz.fragments
 
+import android.annotation.SuppressLint
+import android.app.DatePickerDialog
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
@@ -58,6 +60,10 @@ class ViewOrderFragment : Fragment() {
 
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_view_order, container, false)
+
+        view.puDayInput.setOnClickListener {
+            showDatePicker()
+        }
 
         adapter =
             OrderFragmentRecyclerAdapter(arrayListOf())
@@ -188,6 +194,26 @@ class ViewOrderFragment : Fragment() {
             total += rodentPrices[i] as Double
         }
         return total
+    }
+
+    @SuppressLint("SetTextI18n")
+    private fun showDatePicker() {
+
+        val c = Calendar.getInstance()
+        val year = c.get(Calendar.YEAR)
+        val month = c.get(Calendar.MONTH)
+        val day = c.get(Calendar.DAY_OF_MONTH)
+
+        //create dialog
+        val datePicker =
+            context?.let {
+                DatePickerDialog(it, { _, year, month, dayOfMonth ->
+                    val mMonth = month +1
+                    puDayInput.setText("$mMonth/$dayOfMonth/$year")
+
+                },year,month,day)
+            }
+        datePicker?.show()
     }
 
 }

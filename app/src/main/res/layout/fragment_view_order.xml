@@ -7,9 +7,9 @@
     tools:context=".fragments.ViewOrderFragment">
 
     <LinearLayout
+
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-
         android:orientation="vertical">
 
         <androidx.recyclerview.widget.RecyclerView
@@ -20,15 +20,9 @@
             android:layout_weight=".40"
             android:clipToPadding="false"
             android:padding="4dp"
-
             tools:listitem="@layout/order_fragment_item" />
 
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight=".60"
-            android:orientation="vertical">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -84,14 +78,14 @@
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="10dp"
-                android:clickable="true"
-                android:focusable="true"
                 android:importantForAutofill="no"
-                android:inputType="text"
-                android:text="@string/today"
+                android:clickable="false"
+                android:focusable="false"
+                android:focusableInTouchMode="false"
+                android:cursorVisible="false"
                 android:textColor="@color/white"
                 android:textSize="18sp"
-                tools:ignore="LabelFor" />
+                tools:ignore="LabelFor,TextFields" />
 
             <TextView
                 android:id="@+id/puTimeTag"
@@ -112,6 +106,7 @@
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="10dp"
+                android:layout_marginBottom="30dp"
                 android:clickable="true"
                 android:focusable="true"
                 android:hint="@string/_12_00_1_00pm"
@@ -127,9 +122,11 @@
                 android:id="@+id/btn_send"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="30dp"
+                android:layout_marginEnd="30dp"
+                android:layout_marginStart="30dp"
+                android:layout_marginBottom="30dp"
                 android:text="@string/send_order" />
-        </LinearLayout>
+
 
     </LinearLayout>
 </ScrollView>

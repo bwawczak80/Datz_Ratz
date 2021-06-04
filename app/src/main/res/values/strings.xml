@@ -64,6 +64,7 @@
     <string name="pick_up_time">Pick up Time</string>
     <string name="_12_00_1_00pm">Example 12:00–1:00pm</string>
     <string name="order_total">Order Total:</string>
+    <string name="datz_ratz_v1_3">Datz Ratz v1.3</string>
 
     <string-array name="rodents">
         <item>Pinky Mouse</item>

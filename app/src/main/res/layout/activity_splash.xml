@@ -19,4 +19,16 @@
         app:layout_constraintTop_toTopOf="parent"
         android:contentDescription="@string/datz_logo" />
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="100dp"
+        android:textColor="@color/white"
+        android:textAlignment="textEnd"
+        android:layout_marginEnd="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/splash_logo"
+        android:text="@string/datz_ratz_v1_3"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,6 +1,7 @@
 package com.bwawczak.datz_ratz.fragments
 
 import android.annotation.SuppressLint
+import android.app.DatePickerDialog
 import android.os.Bundle
 import android.text.TextUtils
 import android.view.LayoutInflater
@@ -18,6 +19,7 @@ import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import kotlinx.android.synthetic.main.fragment_add_snake.*
 import kotlinx.android.synthetic.main.fragment_add_snake.view.*
+import java.util.*
 
 
 class AddSnakeFragment : Fragment() {
@@ -45,6 +47,10 @@ class AddSnakeFragment : Fragment() {
 
 
         val isInShed = false
+
+        view.dateInput.setOnClickListener {
+            showDatePicker()
+        }
 
         view.addBtn.setOnClickListener {
 
@@ -132,4 +138,34 @@ class AddSnakeFragment : Fragment() {
         dateInput.hint = ""
         autoCompleteTextView.setText("")
     }
+
+
+
+    @SuppressLint("SetTextI18n")
+    private fun showDatePicker() {
+
+        val c = Calendar.getInstance()
+        val year = c.get(Calendar.YEAR)
+        val month = c.get(Calendar.MONTH)
+        val day = c.get(Calendar.DAY_OF_MONTH)
+
+        //create dialog
+        val datePicker =
+            context?.let {
+                DatePickerDialog(it, { _, year, month, dayOfMonth ->
+                    val mMonth = month +1
+                    dateInput.setText("$mMonth/$dayOfMonth/$year")
+
+                },year,month,day)
+            }
+        datePicker?.show()
+    }
+
+
+
+
+
+
+
+
 }
